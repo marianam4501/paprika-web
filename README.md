@@ -1,4 +1,5 @@
-# paprika-web
+# Paprika
+
 Proyecto Grupal - CI-0137 Desarrollo de Aplicaciones Web.  
 
 Project name: Paprika  
