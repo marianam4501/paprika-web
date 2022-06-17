@@ -1,5 +1,15 @@
+import Header from "../../Components/Header";
+import { useDispatch, useSelector } from "react-redux";
+
 export function Home() {
     return (
-      <div>HOME</div>
+      <html>
+      <div>
+        <Header />
+          <div>HOME  </div>
+
+      </div>
+      </html>
+      
     )
   }

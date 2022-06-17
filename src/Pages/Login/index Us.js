@@ -13,15 +13,13 @@ export default function Login() {
           <div className="img-container">
               <img src={require("../../Images/Paprika-logo.png")} alt="Logo" class="logo"/>
             </div>
-            <h1 className="titleCenter">¡Bienvenido!</h1>
+            <h1 className="titleCenter">¡Bienvenido Username!</h1>
             <div className="img-container">
               <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="user" class="user"/>
             </div>
             
             <div className="container_Input">
-                <label for="email" className="input_Label"><b>Correo Electrónico</b></label>
-                <input type="text" placeholder="Ingrese su Correo Electrónico" name="email" required/>
-                
+
                 <label for="psw" className="input_Label" ><b>Contraseña</b></label>
                 <input type="password" placeholder="Ingrese su Contraseña" name="psw" required/>
                

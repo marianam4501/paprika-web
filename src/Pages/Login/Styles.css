@@ -1,0 +1,124 @@
+
+
+form {
+    font-family: 'OKASINO', sans-serif;
+    border: 6px solid #FF7A00; 
+    align-content: center;
+    padding: 30px;
+    width: 600px;
+    height: 1150px;
+}
+
+.container_Input{
+    align-content: center;
+   
+
+}
+
+.input_Label{
+    font-family: 'Arial Light', sans-serif;
+    margin: 20px 16px;
+}
+
+.login_Btn{
+    box-shadow:  5px 10px rgb(119, 109, 109);
+    border-radius: 15px;
+    box-sizing: border-box;
+    width: 40%;
+    margin: 10px 170px;
+    background-color: #FF7A00;
+}
+
+
+
+input[type=text], input[type=password] {
+  box-shadow:  5px 10px rgb(119, 109, 109);
+  width: 100%;
+  padding: 12px 5px;
+  margin: 8px 7px;
+  display: block;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 15px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+h1.titleCenter{
+    
+    font-family: 'OKASINO', sans-serif;
+    font-size: xx-large;
+    font:bold;
+    margin: 10px 190px;
+}
+
+h2.login{
+  font-family: 'OKASINO', sans-serif,bold;
+  font:bolder;
+  font-size: x-large;
+  margin: 5px 260px;
+
+}
+
+.alternative_Btn {
+  width: 150px;
+  display: block;
+  margin: 20px 180px;
+  box-sizing: border-box;
+  border-radius: 14px;
+  background-color: #000000;
+  box-shadow:  5px 10px rgb(119, 109, 109);
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.logo {
+    width: 80%;
+    heigth: 90%;
+    margin: 160px 30px 0px; 
+    border-radius: 50%;
+    
+
+}
+img.user {
+    width: 30%;
+    heigth: 40%;
+    margin: 20px 200px 10px; 
+    border-radius: 50%;
+    box-shadow:  5px 10px rgb(119, 109, 109);
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
