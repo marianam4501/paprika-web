@@ -6,9 +6,9 @@ import Register from "../Register";
 export default function App() {
   return (
     <Routes>
-      
+      <Route path="/" element={<Home />} />
       <Route path="login" element={ <Login />} />
-      <Route path="/" element={ <Register />} />
+      <Route path="register" element={ <Register />} />
     </Routes>
   )
 }
