@@ -17,7 +17,7 @@ export default function Register() {
               <br />
               <input
                 className="placeholder:text-gray-400 placeholder:text-sm p-4 h-[28px] w-[250px] border rounded border-black "
-                //className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                //className="placeholder:text-gray-400 placeholder:text-sm p-4 sm:h-[28px] sm:w-[250px] md:h-[28px] md:w-[400px] lg:h-[28px] lg:w-[600px] border rounded border-black "
                 placeholder="Escriba su nombre"
                 type="text"
                 name="name"
