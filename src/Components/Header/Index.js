@@ -12,7 +12,7 @@ const user = {
   name: "The_legend_47",
   email: "tom@example.com",
   imageUrl:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    "https://i.ibb.co/f0fyGZv/taco.png",
 };
 
 const navigation = [
@@ -89,7 +89,7 @@ export default function Example() {
                       {/* Profile dropdown */}
                       <Menu as="div" className="ml-3 relative">
                         <div>
-                          <Menu.Button className="max-w-xs bg-black rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                          <Menu.Button className="max-w-xs bg-black rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-white">
                             <span className="sr-only">Open user menu</span>
                             <button
                               type="button"
@@ -122,7 +122,7 @@ export default function Example() {
                                     href={item.href}
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
-                                      "block px-4 py-2 text-sm text-gray-700"
+                                      "block px-4 py-2 text-sm text-black"
                                     )}
                                   >
                                     {item.name}
@@ -191,7 +191,7 @@ export default function Example() {
                     </div>
                     <button
                       type="button"
-                      className="ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                      className="ml-auto bg-black flex-shrink-0 p-1 rounded-full text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-dark-orange"
                     >
                       <span className="sr-only">View notifications</span>
                       <BellIcon className="h-6 w-6" aria-hidden="true" />
@@ -203,7 +203,7 @@ export default function Example() {
                         key={item.name}
                         as="a"
                         href={item.href}
-                        className="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700"
+                        className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-dark-orange"
                       >
                         {item.name}
                       </Disclosure.Button>

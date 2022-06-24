@@ -1,4 +1,4 @@
-import Header from "../../Components/SimpleHeader/Index";
+import Header from "../../Components/Header/Index";
 
 export default function Register() {
   return (
