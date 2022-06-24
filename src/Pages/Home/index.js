@@ -22,7 +22,7 @@ export function Home() {
               className="bg-light-orange hover:bg-dark-orange text-black 
             hover:text-white font-semibold  mx-4 h-10 w-auto px-5 rounded "
             >
-              <a href="/register">Join Paprika</a>
+              <a href="register">Join Paprika</a>
               
             </button>
             <h1 className="text-lg font-semibold tracking-wide text-center px-10">
