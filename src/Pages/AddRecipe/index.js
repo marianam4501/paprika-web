@@ -4,6 +4,7 @@ import Header from "../../Components/Header/Index";
 import Footer from "../../Components/Footer/Index";
 import AddIngredientForm from "../../Components/Add_ingredient_form/Index";
 import { PlusIcon } from "@heroicons/react/outline";
+
 export function AddRecipe() {
   return (
     <div>
