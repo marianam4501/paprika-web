@@ -1,44 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
-form {
-    font-family: 'OKASINO', sans-serif;
-    border: 6px solid #FF7A00; 
-    align-content: center;
-    padding: 30px;
-    width: 600px;
-    height: 1150px;
+.recipe_BackgroundBlk{
+  background-color: #000000;
+  border-color: #FF7A00;
+  color: white;
 }
 
-.container_Input{
-    align-content: center;
-   
+.recipe_BackgroundOrg{
+  background-color: #FF7A00;
+  border-color: #000000;
+  color: black;
+}
 
+
+
+.form_Login{
+  border-color: #FF7A00;
+  margin-top: 10px;
+
+}
+.container_Input{
+  align-content: center;
 }
 
 .input_Label{
+    margin-left:10px;
+    margin-right:10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     font-family: 'Arial Light', sans-serif;
-    margin: 20px 16px;
 }
 
 .login_Btn{
     box-shadow:  5px 10px rgb(119, 109, 109);
     border-radius: 15px;
     box-sizing: border-box;
-    width: 40%;
-    margin: 10px 170px;
+    width: 38%;
+    margin-left: 110px;
+    margin-top: 20px;
     background-color: #FF7A00;
 }
 
-
-
 input[type=text], input[type=password] {
-  box-shadow:  5px 10px rgb(119, 109, 109);
-  width: 100%;
-  padding: 12px 5px;
-  margin: 8px 7px;
+  box-shadow:  1px 7px rgb(119, 109, 109);
+  width: 98%;
+  max-width: 400px;
   display: block;
+  margin-left: 3px;
   border: 3px solid rgb(0, 0, 0);
-  border-radius: 15px;
+  border-radius: 10px;
   box-sizing: border-box;
 }
 
@@ -57,11 +70,17 @@ button:hover {
 }
 
 h1.titleCenter{
-    
     font-family: 'OKASINO', sans-serif;
-    font-size: xx-large;
+    font-size: 50px;
+    margin-left: 70px;
     font:bold;
-    margin: 10px 190px;
+}
+
+h2.titleCenter{
+  font-family: 'OKASINO', sans-serif,bold;
+  font:bolder;
+  font-size: 25px;
+
 }
 
 h2.login{
@@ -74,33 +93,35 @@ h2.login{
 
 .alternative_Btn {
   width: 150px;
+  margin-left: 110px;
+  margin-bottom: 20px;
   display: block;
-  margin: 20px 180px;
   box-sizing: border-box;
   border-radius: 14px;
   background-color: #000000;
   box-shadow:  5px 10px rgb(119, 109, 109);
 }
 
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-}
-
 img.logo {
-    width: 80%;
-    heigth: 90%;
-    margin: 160px 30px 0px; 
+    margin: 110px 0px 0px; 
     border-radius: 50%;
-    
-
 }
+
 img.user {
-    width: 30%;
-    heigth: 40%;
-    margin: 20px 200px 10px; 
+    margin:10px;
+    margin-left: 150px;
     border-radius: 50%;
     box-shadow:  5px 10px rgb(119, 109, 109);
+}
+
+img.recipe{
+  margin: -67px 0px 12px 41px;
+
+}
+img.iconSave{
+  margin: 67px 0px 12px 41px;
+  margin-top: 10px;
+  background-color: transparent;
 }
 
 .container {
