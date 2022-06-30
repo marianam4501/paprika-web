@@ -1,6 +1,6 @@
 //import { Link } from "react-router-dom";
 import React from "react";
-import Header from "../../Components/Header/Index";
+import Header from "../../Components/Header/index";
 import Footer from "../../Components/Footer/Index";
 import AddIngredientForm from "../../Components/Add_ingredient_form/Index";
 import { PlusIcon } from "@heroicons/react/outline";
