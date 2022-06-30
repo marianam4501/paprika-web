@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router";
+import { AddRecipe } from "../AddRecipe";
 import { Home } from "../Home"
 import Login from "../Login/Login";
 import Register from "../Register";
@@ -15,6 +16,8 @@ export default function App() {
       <Route path="register" element={ <Register />} />
       <Route path="recipe" element = { <ViewRecipe/>}/>
       <Route path="Feed" element = { <Feed/>}/>
+      <Route path="Add_recipe" element={ <AddRecipe />} />
+
     </Routes>
   )
 }
