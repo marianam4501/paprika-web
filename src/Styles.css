@@ -15,8 +15,6 @@
   color: black;
 }
 
-
-
 .form_Login{
   border-color: #FF7A00;
   margin-top: 10px;
@@ -35,17 +33,15 @@
 }
 
 .login_Btn{
-    box-shadow:  5px 10px rgb(119, 109, 109);
     border-radius: 15px;
     box-sizing: border-box;
     width: 38%;
-    margin-left: 110px;
+    margin-left: 115px;
     margin-top: 20px;
     background-color: #FF7A00;
 }
 
 input[type=text], input[type=password] {
-  box-shadow:  1px 7px rgb(119, 109, 109);
   width: 98%;
   max-width: 400px;
   display: block;
@@ -93,13 +89,12 @@ h2.login{
 
 .alternative_Btn {
   width: 150px;
-  margin-left: 110px;
+  margin-left: 115px;
   margin-bottom: 20px;
   display: block;
   box-sizing: border-box;
   border-radius: 14px;
   background-color: #000000;
-  box-shadow:  5px 10px rgb(119, 109, 109);
 }
 
 img.logo {
@@ -111,7 +106,6 @@ img.user {
     margin:10px;
     margin-left: 150px;
     border-radius: 50%;
-    box-shadow:  5px 10px rgb(119, 109, 109);
 }
 
 img.recipe{
