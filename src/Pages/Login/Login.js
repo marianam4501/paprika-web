@@ -1,4 +1,4 @@
-import SimpleHeader from "../../Components/Header";
+import SimpleHeader from "../../Components/Header/Index.js";
 import { StyleSheet } from "../../Styles.css";
 //import { useDispatch } from "react-redux/es/exports";
 import { useState } from "react";
