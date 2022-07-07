@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import React, { useState, useRef, useId, useEffect } from "react";
 
 import Header from "../../Components/Header/index";
 import Footer from "../../Components/Footer/Index";
 import RecepiesBlock from "../../Components/RecepiesBlock/index";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfile } from "../../Slices/User/Requests/getProfile";
 
 
 
 export function Profile() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProfile());
+  }, [dispatch]);
+
+  const profile = useSelector(
+    (state) => state.user.profile
+  );
+
+  const loading = useSelector(
+    (state) => state.app.loading
+  );
+
+
   return (
     <div>
       <Header />
@@ -30,7 +47,7 @@ export function Profile() {
             </svg>
           </span>
           <label className="block text-lg font-normal text-black justify-self-center">
-            The leyend 47
+            `${profile.user.name} ${profile.user.lastname}`
           </label>
           <div className="columns-2 justify-center mb-2">
             <div className="grid justify-center gap-y-2 mb-2">

@@ -1,23 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { userReducers } from "./Reducers";
-import { onPostLoginFullfiled, onPostLoginRejected, postLogin } from "./Requests/postLogin";
+import { recipeReducers } from "./reducers";
+import { createRecipe, onCreateRecipeFullfiled, onCreateRecipeRejected } from "./Requests/createRecipe";
+import { getFeed, onGetFeedFullfiled, onGetFeedRejected } from "./Requests/getFeed";
+import { getRecipe, onGetRecipeFullfiled, onGetRecipeRejected } from "./Requests/getRecipeById";
 
-const userSlice = createSlice({
-    name: 'recipe',
+const recipeSlice = createSlice({
+    name: 'item',
     initialState: {
-        user: null,
-        userIsLoggedIn: false,
+        item: null,
+        success: false,
         errorMessage: "",
-        users: null,
     },
-    reducers: userReducers,
+    reducers: recipeReducers ,
     extraReducers(builder) {
         builder
-            .addCase(postLogin.fulfilled, onPostLoginFullfiled)
-            .addCase(postLogin.rejected, onPostLoginRejected)
+            .addCase(createRecipe.fulfilled, onCreateRecipeFullfiled)
+            .addCase(createRecipe.rejected, onCreateRecipeRejected)
+            .addCase(getFeed.fulfilled,onGetFeedFullfiled)
+            .addCase(getFeed.rejected,onGetFeedRejected)
+            .addCase(getRecipe.fulfilled,onGetRecipeFullfiled)
+            .addCase(getFeed.rejected,onGetRecipeRejected)
     }
 });
 
-export const { logout } = userSlice.actions;
+export const { clearState } = recipeSlice.actions;
 
-export default userSlice.reducer;
+export default recipeSlice.reducer;

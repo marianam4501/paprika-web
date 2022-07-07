@@ -11,6 +11,9 @@ const appSlice = createSlice({
     reducers: {
         toggleLoading: (state) => {
             state.loading = !state.loading;
+        },
+        userToken:(state,token) =>{
+            state.userToken = token;        
         }
     },
     extraReducers(builder) {

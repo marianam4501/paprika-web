@@ -1,7 +1,21 @@
 import Header from "../../Components/SimpleHeader/Index";
 import Footer from "../../Components/Footer/Index";
+import { createUser } from "../../Slices/User/Requests/createUser";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+
 
 export default function Register() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [lastName, setlastName] = useState("");
+
+  const userToken = useSelector((state) => state.user.userToken);
+  
+  const dispatch = useDispatch();
+
   return (
     <div>
       <div className="mb-5">
@@ -22,6 +36,10 @@ export default function Register() {
                   placeholder="Escriba su nombre"
                   type="text"
                   name="name"
+                  value={name}
+                  onChange={(evt) => {
+                    setName(evt.target.value);
+                  }}
                 />
               </label>
             </div>
@@ -34,6 +52,10 @@ export default function Register() {
                   placeholder="Escriba su apellido"
                   type="text"
                   name="lastname"
+                  value={lastName}
+                  onChange={(evt) => {
+                    setlastName(evt.target.value);
+                  }}
                 />
               </label>
             </div>
@@ -47,6 +69,10 @@ export default function Register() {
                   type="email"
                   name="email"
                   required
+                  value={email}
+                  onChange={(evt) => {
+                    setEmail(evt.target.value);
+                  }}
                 />
               </label>
             </div>
@@ -60,6 +86,10 @@ export default function Register() {
                   type="password"
                   name="password"
                   required
+                  value={password}
+                  onChange={(evt) => {
+                    setPassword(evt.target.value);
+                  }}
                 />
               </label>
             </div>
@@ -80,6 +110,9 @@ export default function Register() {
             <button
               className="bg-light-orange  mt-4 shadow-md hover:bg-dark-orange rounded text-white font-bold"
               type="submit"
+              onClick={() => {
+                dispatch(createUser(name,lastName,email, password));
+              }}
             >
               <a href="Feed">Registrarse</a>
             </button>
