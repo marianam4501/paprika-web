@@ -1,5 +1,4 @@
 import SimpleHeader from "../../Components/Header/index.js";
-import { StyleSheet } from "../../Styles.css";
 
 export default function ViewRecipe() {
   return (

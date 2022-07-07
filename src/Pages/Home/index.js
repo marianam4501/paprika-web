@@ -20,14 +20,14 @@ export function Home() {
             </h1>
             <button
               className="bg-light-orange hover:bg-dark-orange text-black 
-            hover:text-white font-semibold  mx-4 h-10 w-auto px-5 rounded "
+            hover:text-white font-semibold  mx-4 h-10 w-auto px-5 rounded"
             >
               <a href="register">Join Paprika</a>
               
             </button>
-            <h1 className="text-lg font-semibold tracking-wide text-center px-10">
+            <h3 className="text-base font-medium tracking-wide text-center px-10">
               or
-            </h1>
+            </h3>
             <button
               className="bg-light-orange hover:bg-dark-orange text-black 
             hover:text-white font-semibold  mx-4 h-10 w-auto px-11 rounded"
