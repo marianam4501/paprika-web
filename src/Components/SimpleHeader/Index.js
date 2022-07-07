@@ -1,11 +1,10 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from "react";
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 const navigation = [
+  { name: "Home", href: "/", current: false },
   { name: "Register", href: "/register", current: false },
-  { name: "Login", href: "/Add_recipe", current: false },
+  { name: "Login", href: "/login", current: false },
 ];
 
 function classNames(...classes) {
@@ -15,14 +14,7 @@ function classNames(...classes) {
 export default function SimpleHeader() {
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
+      
       <div className="min-h-full">
         <Disclosure as="nav" className="bg-black">
           {({ open }) => (

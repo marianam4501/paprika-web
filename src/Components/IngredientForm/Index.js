@@ -1,9 +1,11 @@
 import React from "react";
-//import { PlusIcon,XIcon } from "@heroicons/react/outline";
 
-export default function AddIngredientForm() {
+export default function IngedientForm({ingredient, handleDeleteIngredient}) {
+  function handleDeleteClick() {
+    handleDeleteIngredient(ingredient.id)
+  }
   return (
-    <div>
+    <div id={ingredient.id}>
       <main>
         <div class="flex justify-center ">
           <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-full gap-3">
@@ -44,8 +46,9 @@ export default function AddIngredientForm() {
             <button
               type="button"
               class=" inline-block px-6 py-2.5 mt-5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-900 hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-600 active:shadow-lg transition duration-150 ease-in-out"
+              onClick={handleDeleteClick}
             >
-              Delete
+              Delete Ingredient
             </button>
           </div>
         </div>

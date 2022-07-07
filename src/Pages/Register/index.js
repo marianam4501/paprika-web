@@ -1,4 +1,5 @@
-import Header from "../../Components/Header/index";
+import Header from "../../Components/SimpleHeader/Index";
+import Footer from "../../Components/Footer/Index";
 
 export default function Register() {
   return (
@@ -7,7 +8,7 @@ export default function Register() {
         <Header />
       </div>
       
-      <div className="w-screen h-screen flex flex-wrap justify-center">
+      <div className="w-auto h-auto flex flex-wrap justify-center mb-32">
         <div>
           <h1 className="text-3xl font-bold my-5">Registrarse</h1>
           <form>
@@ -77,15 +78,18 @@ export default function Register() {
             </div>
             <div>
             <button
-              className="bg-light-orange h-[28px] w-[250px] mt-4 shadow-md hover:bg-dark-orange rounded text-white font-bold"
+              className="bg-light-orange  mt-4 shadow-md hover:bg-dark-orange rounded text-white font-bold"
               type="submit"
             >
-              Registrarse
+              <a href="Feed">Registrarse</a>
             </button>
             </div>
             
           </form>
         </div>
+      </div>
+      <div className="relative inset-x-0 bottom-0 z-40">
+        <Footer />
       </div>
     </div>
   );

@@ -1,11 +1,43 @@
-//import { Link } from "react-router-dom";
-import React from "react";
+import React, { useState, useEffect, useId } from "react";
 import Header from "../../Components/Header/index";
 import Footer from "../../Components/Footer/Index";
-import AddIngredientForm from "../../Components/Add_ingredient_form/Index";
+import IngredientList from "../../Components/IngredientList/Index";
+
+import { v4 as uuidv4 } from "uuid";
+
 import { PlusIcon } from "@heroicons/react/outline";
 
+const LOCAL_STORAGE_KEY = "todoApp.todos";
+
 export function AddRecipe() {
+  const [ingredients, setIngredients] = useState([]);
+
+  const [recepiPicture, setRecepiPicture] = useState(null);
+
+  function handleAddIngredient(e) {
+    setIngredients((prevIngredients) => {
+      return [...prevIngredients, { id: uuidv4() }]; // use id?
+    });
+  }
+
+  useEffect(() => {
+    const storedIngredients = JSON.parse(
+      localStorage.getItem(LOCAL_STORAGE_KEY)
+    );
+    if (storedIngredients) setIngredients(storedIngredients);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(ingredients));
+  }, [ingredients]);
+
+  function handleDeleteIngredient(id) {
+    const newIngredients = ingredients.filter(
+      (ingredient) => ingredient.id !== id
+    );
+    setIngredients(newIngredients);
+  }
+
   return (
     <div>
       <div className="pb-5">
@@ -27,45 +59,66 @@ export function AddRecipe() {
           ></input>
           {/* IMAGE INPUT */}
           <label className="block text-lg  text-black">Meal Picture:</label>
-          <div className="content-center mt-1 flex justify-center px-6 pt-5 pb-6 border-2 h-[200px] border-gray-300 border-dashed rounded-md">
-            <div className="space-y-1 text-center justify-center mt-5">
-              <img
-                className="object-cover h-14 w-22 justify-self-center ml-20"
-                src="https://i.ibb.co/dBvR1v0/fast-food.png"
-                alt="Logo Paprika"
-              />
-              <div className="flex text-sm text-gray-600">
-                <label
-                  htmlFor="file-upload"
-                  className="relative cursor-pointer bg-white rounded-md font-medium text-dark-orange hover:text-light-orange focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-light-orange"
-                >
-                  <span>Upload a Picture</span>
-                  <input
-                    id="file-upload"
-                    name="file-upload"
-                    type="file"
-                    className="sr-only"
+
+          <div className="content-center mt-1 flex justify-center px-6 pt-5 pb-6 border-2 h-auto border-gray-300 border-dashed rounded-md">
+            {!recepiPicture && (
+              <div className=" space-y-1 text-center justify-center mt-5">
+                <div className="columns-1 justify-center  text-sm text-gray-600">
+                  <img
+                    className="object-cover h-14 w-22 mb-3 mx-[92px]"
+                    src="https://i.ibb.co/dBvR1v0/fast-food.png"
+                    alt="Logo Paprika"
                   />
-                </label>
-                <p className="pl-1">or drag and drop</p>
+                  <label
+                    htmlFor="file-upload"
+                    className="relative cursor-pointer bg-white rounded-md font-medium text-dark-orange hover:text-light-orange focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-light-orange"
+                  >
+                    {/* <span>Upload a Picture</span> */}
+                    <input
+                      id="recepiPicture"
+                      onChange={(evt) => {
+                        setRecepiPicture(evt.target.files[0]);
+                      }}
+                      name="file-upload"
+                      type="file"
+                      className="w-[185px]"
+                    />
+                  </label>
+                </div>
               </div>
-              <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-            </div>
-          </div>
-          <div className="py-3 bg-gray-50 sm:px-6">
-            <button
-              type="submit"
-              className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
-            >
-              Upload
-            </button>
+            )}
+
+            {recepiPicture && (
+              <div>
+                <img
+                  src={URL.createObjectURL(recepiPicture)}
+                  alt="Product preview"
+                  className="rounded-xl"
+                />
+
+                <button
+                  onClick={() => {
+                    setRecepiPicture(null);
+                  }}
+                  className="bg-red-600 text-white px-4 py-2 rounded-md"
+                >
+                  Eliminar
+                </button>
+              </div>
+            )}
           </div>
 
+          {/*  INGREDIENTS */}
           <label className="block text-lg  text-black">Ingredients:</label>
-          <AddIngredientForm/>
+
+          <IngredientList
+            ingredients={ingredients}
+            handleDeleteIngredient={handleDeleteIngredient}
+          />
           <button
             type="submit"
             className="inline-flex justify-center my-3 px-4 py-3 w-full border border-transparent shadow-sm text-lg font-medium rounded-md text-white bg-black hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+            onClick={handleAddIngredient}
           >
             <PlusIcon className="h-6"></PlusIcon>
           </button>
@@ -86,7 +139,8 @@ export function AddRecipe() {
             type="submit"
             className="inline-flex justify-center mt-10 px-4 py-3 w-full border border-transparent shadow-sm text-lg font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
           >
-            Post your recipe!    🍜
+            <a href="Add_recipe">Post your recipe! 🍜</a>
+            
           </button>
         </div>
       </main>
