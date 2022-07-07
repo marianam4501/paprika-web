@@ -14,7 +14,7 @@ export default function Login() {
   const dispatch = useDispatch();
 
   return userIsLoggedIn ? (
-    <Navigate to="/" />
+    <Navigate to="/Profile" />
   ) : (
     <div>
       <SimpleHeader />
@@ -38,7 +38,6 @@ export default function Login() {
         <input
           class="mb-5 form-control block w-full px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding
             border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-light-orange focus:outline-none"
-          id="floatingInput"
           type="email"
           placeholder="Ingrese su correo electrónico"
           name="email"
@@ -53,7 +52,6 @@ export default function Login() {
           type="password"
           class="form-control block w-full px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding
             border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-light-orange focus:outline-none"
-          id="floatingInput"
           placeholder="Ingrese su contraseña"
           value={password}
           name="psw"
@@ -62,15 +60,17 @@ export default function Login() {
           }}
         ></input>
 
+
         <div className="gap-0 grid justify-items-center mt-6">
           <button
             className="w-44 justify-self-center py-2 px-6 border border-transparent 
               shadow-sm text-sm font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
             onClick={() => {
-              dispatch(postLogin(email, password));
+              dispatch(postLogin({email, password}));
             }}
+            
           >
-            <a href="register">Iniciar Sesión</a>
+            <a >Iniciar Sesión</a>
           </button>
           <h3 className="text-base font-normal tracking-wide text-center px-10">
             ó

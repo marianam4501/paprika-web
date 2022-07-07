@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { recipeReducers } from "./reducers";
+import { recipeReducers } from "./Reducers";
 import { createRecipe, onCreateRecipeFullfiled, onCreateRecipeRejected } from "./Requests/createRecipe";
 import { getFeed, onGetFeedFullfiled, onGetFeedRejected } from "./Requests/getFeed";
 import { getRecipe, onGetRecipeFullfiled, onGetRecipeRejected } from "./Requests/getRecipeById";
 
 const recipeSlice = createSlice({
-    name: 'item',
+    name: 'recipe',
     initialState: {
-        item: null,
+        recipe: null,
         success: false,
         errorMessage: "",
     },
@@ -19,7 +19,7 @@ const recipeSlice = createSlice({
             .addCase(getFeed.fulfilled,onGetFeedFullfiled)
             .addCase(getFeed.rejected,onGetFeedRejected)
             .addCase(getRecipe.fulfilled,onGetRecipeFullfiled)
-            .addCase(getFeed.rejected,onGetRecipeRejected)
+            .addCase(getRecipe.rejected,onGetRecipeRejected)
     }
 });
 

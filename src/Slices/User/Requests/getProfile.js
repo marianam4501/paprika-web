@@ -3,8 +3,8 @@ const jwt = require ('jsonwebtoken');
 
 export const getProfile = createAsyncThunk('users/getProfile', async ({getState}) => {
     const state = getState();
-    const data = jwt.decode(state.userToken);
-    const id = data.id;
+    const id = state.user.id;
+    console.log(id);
     const profileFetch = await fetch(`https://paprika-api.herokuapp.com/users/${id}`, {
         headers: {
 

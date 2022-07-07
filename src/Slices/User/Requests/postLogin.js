@@ -1,6 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+
 export const postLogin = createAsyncThunk('users/postLogin', async (credentials) => {
+
+    console.log(credentials.email );
+
     const loginFetch = await fetch(`https://paprika-api.herokuapp.com/users/login`, {
         method: 'POST',
         headers: {
@@ -10,7 +14,8 @@ export const postLogin = createAsyncThunk('users/postLogin', async (credentials)
             email: credentials.email,
             password: credentials.password,
         }),
-    });
+     
+    });   
     const userData = await loginFetch.json();
     if (loginFetch.status === 200) {
         return userData;
@@ -30,7 +35,7 @@ export const onPostLoginFullfiled = (state, action) => {
     } else {
         state.userIsLoggedIn = true;
         state.user = action.payload;
-        state.userToken = action.payload.userToken;
+        state.userToken = action.payload.token;
     }
 };
 
