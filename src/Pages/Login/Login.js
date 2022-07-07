@@ -19,6 +19,57 @@ export default function Login() {
   ) :  (
     <div>
       <SimpleHeader />
+
+
+      <input
+            placeholder="Email"
+            className={`placeholder:text-black pl-4 h-[48px] w-full rounded-md `}
+            value={email}
+            onChange={(evt) => {
+              setEmail(evt.target.value);
+            }}
+          />
+
+
+
+
+      <input
+            placeholder="Contraseña"
+            className={`placeholder:text-black pl-4 h-[48px] w-full rounded-md `}
+            type="password"
+            value={password}
+            onChange={(evt) => {
+              setPassword(evt.target.value);
+            }}
+          />
+
+
+      <button
+          className="h-[48px] w-full rounded-md bg-sky-500 text-white"
+          onClick={() => {
+            if (email && password) {
+              if (password.length < 8) {           
+              }
+              else {
+                dispatch(
+                  postLogin({
+                    email,
+                    password,
+                  })
+                );
+              }
+            }
+            else {
+            }
+          }}
+        >
+          Iniciar Sesión
+        </button>
+    </div>
+  );
+}
+
+/*
       <div className=" flex justify-center items-center  mt-2  ">
         <form className="form_Login  ">
           <div>
@@ -111,6 +162,5 @@ export default function Login() {
           </label>
         </form>
       </div>
-    </div>
-  );
-}
+
+*/

@@ -1,18 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const postLogin = createAsyncThunk('usuarios/postLogin', async (credentials) => {
-    const loginFetch = await fetch(`https://paprika-api.herokuapp.com/users/login`, {
+export const createUser = createAsyncThunk('usuarios/createUser', async (user) => {
+    const createUserFetch = await fetch(`https://paprika-api.herokuapp.com/users/login`, {
         method: 'POST',
         headers: {
             "Content-type": "application/json",
         },
         body: JSON.stringify({
-            email: credentials.email,
-            password: credentials.password,
+            name: user.name,
+            lastname: user.lastname,
+            email: user.email,
+            password: user.password,  
+
         }),
     });
-    const userData = await loginFetch.json();
-    if (loginFetch.status === 200) {
+    const userData = await createUserFetch.json();
+    if (createUserFetch.status === 200) {
         return userData;
     } else {
         return {
