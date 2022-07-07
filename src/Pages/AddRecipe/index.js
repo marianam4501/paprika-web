@@ -108,39 +108,6 @@ export function AddRecipe() {
             )}
           </div>
 
-          {/* <label htmlFor="productPhoto">Foto del producto</label>
-            <input
-              className="block w-full mb-4 border rounded-md"
-              id="productPhoto"
-              onChange={(evt) => {
-                setProductPicture(evt.target.files[0]);
-              }}
-              type="file"
-            />
-            {productPicture && (
-              <img
-                src={URL.createObjectURL(productPicture)}
-                alt="Product preview"
-              />
-            )} */}
-
-          {/* {foto && (
-            <div>
-              <button
-                onClick={() => {
-                  setFoto(null);
-                }}
-                className="bg-red-600 text-white px-4 py-2 rounded-md"
-              >
-                Eliminar
-              </button>
-              <img
-                className="max-h-56 mt-8"
-                src={URL.createObjectURL(foto)}
-                alt="Foto del nuevo artículo"
-              />
-            </div>
-          )} */}
           {/*  INGREDIENTS */}
           <label className="block text-lg  text-black">Ingredients:</label>
 

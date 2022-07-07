@@ -16,7 +16,7 @@ export function Profile() {
           <img
             className="h-6 w-6 justify-self-end"
             src="https://i.ibb.co/DLsKCmP/setting.png"
-            alt="Logo Paprika"
+            alt="userPic"
           />
         </div>
         <div className="grid mt-1 mb-10 columns-1 justify-center gap-y-5">
