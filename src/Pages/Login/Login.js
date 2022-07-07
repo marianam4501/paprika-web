@@ -1,6 +1,5 @@
 import SimpleHeader from "../../Components/Header/index.js";
 import { useDispatch , useSelector } from "react-redux";
-import { StyleSheet } from "../../Styles.css";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { postLogin } from "../../Slices/User/Requests/postLogin";
