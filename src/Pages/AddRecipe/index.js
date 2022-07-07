@@ -1,11 +1,38 @@
-//import { Link } from "react-router-dom";
-import React from "react";
+import React, { useState, useEffect, useId } from "react";
 import Header from "../../Components/Header/index";
 import Footer from "../../Components/Footer/Index";
-import AddIngredientForm from "../../Components/Add_ingredient_form/Index";
+import IngredientList from "../../Components/IngredientList/Index";
+
+import { v4 as uuidv4 } from "uuid";
+
 import { PlusIcon } from "@heroicons/react/outline";
 
+const LOCAL_STORAGE_KEY = 'todoApp.todos'
+
 export function AddRecipe() {
+  const [ingredients, setIngredients] = useState([])
+
+  function handleAddIngredient(e) {
+    
+    setIngredients(prevIngredients => {
+      return [...prevIngredients, {id: uuidv4()}] // use id?
+    })
+  }
+
+  useEffect(() => {
+    const storedIngredients = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
+    if (storedIngredients) setIngredients(storedIngredients)
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(ingredients))
+  }, [ingredients])
+
+  function handleDeleteIngredient(id) {
+    const newIngredients = ingredients.filter(ingredient => ingredient.id !== id)
+    setIngredients(newIngredients)
+  }
+
   return (
     <div>
       <div className="pb-5">
@@ -60,12 +87,13 @@ export function AddRecipe() {
               Upload
             </button>
           </div>
-
           <label className="block text-lg  text-black">Ingredients:</label>
-          <AddIngredientForm/>
+          
+          <IngredientList ingredients={ingredients} handleDeleteIngredient={handleDeleteIngredient}/>
           <button
             type="submit"
             className="inline-flex justify-center my-3 px-4 py-3 w-full border border-transparent shadow-sm text-lg font-medium rounded-md text-white bg-black hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+            onClick={handleAddIngredient}
           >
             <PlusIcon className="h-6"></PlusIcon>
           </button>
@@ -86,7 +114,7 @@ export function AddRecipe() {
             type="submit"
             className="inline-flex justify-center mt-10 px-4 py-3 w-full border border-transparent shadow-sm text-lg font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
           >
-            Post your recipe!    🍜
+            Post your recipe! 🍜
           </button>
         </div>
       </main>

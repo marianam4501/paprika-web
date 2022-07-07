@@ -1,7 +1,12 @@
 import React from "react";
-import Header from "../../Components/Header/Index";
+// import React, { useState, useRef, useId, useEffect } from "react";
+
+import Header from "../../Components/Header/index";
 import Footer from "../../Components/Footer/Index";
 import RecepiesBlock from "../../Components/RecepiesBlock/index";
+
+
+
 export function Profile() {
   return (
     <div>
