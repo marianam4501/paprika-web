@@ -51,6 +51,13 @@ input[type=text], input[type=password] {
   box-sizing: border-box;
 }
 
+.button_hover{
+  background-color: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
 button {
   background-color: #04AA6D;
   color: white;
