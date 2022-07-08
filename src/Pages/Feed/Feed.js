@@ -1,8 +1,13 @@
-import SimpleHeader from "../../Components/Header/index.js";
-import { StyleSheet } from "../../Styles.css";
-import { useState } from "react";
+import Header from "../../Components/Header/index.js";
+import Footer from "../../Components/Footer/Index.js";
+import PostsList from "../../Components/FeedPosts/PostsList";
+// import { HeartIcon } from "@heroicons/react/outline";
+// import { useState } from "react";
+// import { v4 as uuidv4 } from "uuid";
 
-const testRecipes = [
+// const ID = uuidv4();
+
+const Posts = [
   {
     id: 1,
     userId: 2,
@@ -121,25 +126,31 @@ const testRecipes = [
 ];
 
 export default function Feed() {
-  const [isHovering, setIsHovering] = useState(false);
+  // const [isHovering, setIsHovering] = useState(false);
 
-  const handleMouseOver = () => {
-    setIsHovering(true);
-  };
+  // const handleMouseOver = () => {
+  //   setIsHovering(true);
+  // };
 
-  const handleMouseOut = () => {
-    setIsHovering(false);
-  };
+  // const handleMouseOut = () => {
+  //   setIsHovering(false);
+  // };
   return (
-    <div>
-      <SimpleHeader />
-      <div className="mx-5 columns-2 -z-0">
+    <>
+      <div className="pb-5">
+        <Header />
+      </div>
+      <main>
+        <PostsList Posts={Posts} />
+
+        {/* <div className="mx-5 columns-2">
         {testRecipes.map((R) => {
           return (
             <div
               key={`product_${R.id}`}
               className="px-1 flex flex-col space-y-5 static"
-              onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}
+              // onMouseOver={handleMouseOver}
+              // onMouseOut={handleMouseOut}
             >
               <div>
                 <img
@@ -147,20 +158,26 @@ export default function Feed() {
                   src={R.image}
                   alt={R.name}
                 />
-            
-              </div>    
-              {isHovering && (
-                  <div className="bg-light-orange opacity-100 rounded-lg font-black mb-7">
-                    <h1 className="text-center opacity-100 static">{R.name}</h1>
-                    <button className="button_hover mb-8">
-                      <img src={require("../../Images/like.png") } className="h-7 w-7" alt="like"/>
-                    </button>
-                  </div>
-                )}
+              </div>
+
+              <div className="bg-light-orange opacity-100 rounded-lg font-black mb-7">
+                <h1 className="text-center opacity-100 static">{R.name}</h1>
+                <button className="button_hover mb-8">
+                  <img
+                    src={require("../../Images/like.png")}
+                    className="h-7 w-7"
+                    alt="like"
+                  />
+                </button>
+              </div>
             </div>
           );
         })}
-      </div>
-    </div>
+      </div> */}
+        <div className="static inset-x-0 bottom-0">
+          <Footer />
+        </div>
+      </main>
+    </>
   );
 }

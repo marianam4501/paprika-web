@@ -7,6 +7,8 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/outline";
 
+import { Link } from "react-router-dom";
+
 const user = {
   name: "The_legend_47",
   email: "tom@example.com",
@@ -42,11 +44,14 @@ export default function Header() {
                   <div className="flex items-center">
                     {/* Paprika logo */}
                     <div className="flex-shrink-0">
+                      <Link to="/Feed">
                       <img
                         className="object-cover relative h-14 w-22"
                         src="https://rb.gy/iq70yv"
                         alt="Logo Paprika"
                       />
+                      </Link>
+                      
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
