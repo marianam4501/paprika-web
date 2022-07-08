@@ -114,7 +114,7 @@ export default function Register() {
                 dispatch(createUser(name,lastName,email, password));
               }}
             >
-              <a href="Feed">Registrarse</a>
+              <a >Registrarse</a>
             </button>
             </div>
             

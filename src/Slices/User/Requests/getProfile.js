@@ -2,16 +2,17 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 const jwt = require ('jsonwebtoken');
 
 export const getProfile = createAsyncThunk('users/getProfile', async ({getState}) => {
+    console.log("llamado a metodo");
     const state = getState();
     const id = state.user.id;
     console.log(id);
     const profileFetch = await fetch(`https://paprika-api.herokuapp.com/users/${id}`, {
         headers: {
-
+            "Content-type": "application/json"
         },
     });
     const profileData = await profileFetch.json();
-    console.log("usersDate: ", profileData);
+    console.log(profileData);
     if (profileFetch.status === 200) {
         return profileData;
     } else {
@@ -24,13 +25,13 @@ export const getProfile = createAsyncThunk('users/getProfile', async ({getState}
 
 export const onGetProfileFullfiled = (state, action) => {
     if (action.payload.error) {
-        state.profile = null;
+        state.user.profile = null;
         state.errorMessage = action.payload.message;
     } else {
-        state.profile = action.payload;
+        state.user.profile = action.payload;
     }
 };
 
 export const onGetProfileRejected = (state) => {
-    state.profile = null;
+    state.user.profile = null;
 }

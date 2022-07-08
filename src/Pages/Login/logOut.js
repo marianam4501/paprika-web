@@ -1,10 +1,10 @@
- import Header from "../../Components/Header";
+ import SimpleHeader from "../../Components/SimpleHeader/Index";
 
-export default function logOut() {
+export default function LogOut() {
   return (
     <html>
     <div>
-      <Header />
+      <SimpleHeader />
       logOut
     </div>
     </html>

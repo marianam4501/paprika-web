@@ -1,26 +1,47 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import React, { useState, useRef, useId, useEffect } from "react";
-
 import Header from "../../Components/Header/index";
 import Footer from "../../Components/Footer/Index";
 import RecepiesBlock from "../../Components/RecepiesBlock/index";
 import { useDispatch, useSelector } from "react-redux";
 import { getProfile } from "../../Slices/User/Requests/getProfile";
-
-  
+import { logout } from "../../Slices/User/userSlice";
+import getStoredState from "redux-persist/es/getStoredState";
 
 export function Profile() {
-const dispatch = useDispatch();
+  const [profile, setProfile] = useState(null);
 
-  useEffect(() => {
-    console.log("entra");
-    dispatch(getProfile());
-    console.log("sale");
-  }, []);
-
-  const profile = useSelector(
-    (state) => state.user
+  const id = useSelector(
+    (state) => state.user.user.id
   );
+  
+  const dispatch = useDispatch();
+
+  useEffect (() => {
+    const profileFetch = async() => {
+
+      const fetchProfile = await fetch (`https://paprika-api.herokuapp.com/users/${id}`,{
+        method:'GET',
+        headers: {
+          "Content-type": "application/json"
+        },
+      });
+      const profileJSON = await fetchProfile.json();
+      console.log("siuu");
+      if (fetchProfile.status === 200) {
+        setProfile(profileJSON);
+      } else {
+        console.log("Error al cargar el perfil");
+      }
+    };
+    profileFetch();
+  },[]);
+
+ // const profile = useSelector(
+   //(state) => state.profile.user
+  //);
+
+  //console.log(profile.user.name + "print de  vista")
 
   const loading = useSelector(
     (state) => state.app.loading
@@ -49,7 +70,7 @@ const dispatch = useDispatch();
             </svg>
           </span>
           <label className="block text-lg font-normal text-black justify-self-center">
-            {profile.user.name} {profile.user.lastname}
+            {profile.user.name} {profile.user.lastName}
           </label>
           <div className="columns-2 justify-center mb-2">
             <div className="grid justify-center gap-y-2 mb-2">
@@ -73,7 +94,11 @@ const dispatch = useDispatch();
                 type="submit"
                 className="inline-flex justify-center py-2 px-11 border border-transparent 
               shadow-sm text-sm font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                onClick={() => {
+                dispatch(logout());
+                }}
               >
+            
                 Saved
               </button>
             </div>
