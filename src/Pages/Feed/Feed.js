@@ -126,15 +126,8 @@ const Posts = [
 ];
 
 export default function Feed() {
-  // const [isHovering, setIsHovering] = useState(false);
-
-  // const handleMouseOver = () => {
-  //   setIsHovering(true);
-  // };
-
-  // const handleMouseOut = () => {
-  //   setIsHovering(false);
-  // };
+  
+  
   return (
     <>
       <div className="pb-5">
@@ -143,37 +136,6 @@ export default function Feed() {
       <main>
         <PostsList Posts={Posts} />
 
-        {/* <div className="mx-5 columns-2">
-        {testRecipes.map((R) => {
-          return (
-            <div
-              key={`product_${R.id}`}
-              className="px-1 flex flex-col space-y-5 static"
-              // onMouseOver={handleMouseOver}
-              // onMouseOut={handleMouseOut}
-            >
-              <div>
-                <img
-                  className="object-cover relative h-auto w-auto rounded-lg mt-3"
-                  src={R.image}
-                  alt={R.name}
-                />
-              </div>
-
-              <div className="bg-light-orange opacity-100 rounded-lg font-black mb-7">
-                <h1 className="text-center opacity-100 static">{R.name}</h1>
-                <button className="button_hover mb-8">
-                  <img
-                    src={require("../../Images/like.png")}
-                    className="h-7 w-7"
-                    alt="like"
-                  />
-                </button>
-              </div>
-            </div>
-          );
-        })}
-      </div> */}
         <div className="static inset-x-0 bottom-0">
           <Footer />
         </div>
