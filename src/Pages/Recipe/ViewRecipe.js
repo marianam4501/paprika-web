@@ -63,7 +63,7 @@ export default function ViewRecipe() {
           <div className="flex flex-row">
             <div>
               <img
-                src={Recipe.recipe.image}
+                src="paprika/pie_de_limon.png"
                 alt="fotography"
                 className="object-cover relative h-72 w-72 rounded-lg shadow-xl"
               />

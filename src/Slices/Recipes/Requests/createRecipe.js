@@ -39,6 +39,7 @@ export const onCreateRecipeFullfiled = (state, action) => {
         state.item = null;
         state.errorMessage = action.payload.message;
     } else {
+        console.log("logró");
         state.success = true;
         state.item = action.payload;
     }

@@ -2,16 +2,32 @@ import React, { useState, useEffect } from "react";
 import Header from "../../Components/Header/index";
 import Footer from "../../Components/Footer/Index";
 import IngredientList from "../../Components/IngredientList/Index";
+import { useDispatch } from "react-redux";
 
 import { v4 as uuidv4 } from "uuid";
 
 import { PlusIcon } from "@heroicons/react/outline";
+import { createRecipe } from "../../Slices/Recipes/Requests/createRecipe";
 
 
 export function AddRecipe() {
   const [ingredients, setIngredients] = useState([]);
   const [recepiPicture, setRecepiPicture] = useState(null);
-  const [recipe,setRecipe] = useState();
+  const [recipe, setRecipe] = useState({
+    userId: "",
+    name: "",
+    steps: " ",
+    ingredients: [],
+  });
+
+  const dispatch = useDispatch();
+
+  const handleChange = (key, value) => {
+    setRecipe({
+      ...recipe,
+      [key]: value,
+    });
+  };
 
   function handleAddIngredient(e) {
     setIngredients((prevIngredients) => {
@@ -40,7 +56,10 @@ export function AddRecipe() {
           <h6 className="text-lg text-black">Name of the recipe:</h6>
           <input
             value={recipe.name}
-            on
+            onChange={ (evt) =>{
+                handleChange("name",evt.target.value);
+              }
+            }
             type="text"
             class="form-control block w-full px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding
             border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-light-orange focus:outline-none"
@@ -117,6 +136,11 @@ export function AddRecipe() {
             Steps:
           </label>
           <textarea
+              onChange={ (evt) =>{
+                handleChange("steps",evt.target.value);
+                }
+              }
+              value={recipe.steps}
             class="
             form-control block w-full px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding
             border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-light-orange focus:outline-none"
@@ -128,6 +152,9 @@ export function AddRecipe() {
           <button
             type="submit"
             className="inline-flex justify-center mt-10 px-4 py-3 w-full border border-transparent shadow-sm text-lg font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                onClick={() => {
+                  dispatch(createRecipe(recipe,recepiPicture));
+                }}
           >
             <a href="Add_recipe">Post your recipe! 🍜</a>
             

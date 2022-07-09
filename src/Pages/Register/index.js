@@ -154,7 +154,7 @@ export default function Register() {
               className="bg-light-orange  mt-4 shadow-md hover:bg-dark-orange rounded text-white font-bold"
               type="submit"
               onClick={() => {
-                dispatch(createUser(name,lastName,email, password));
+                dispatch(createUser({name,lastName,email, password},UserPicture));
               }}
             >
               <a href="/feed">Registrarse</a>

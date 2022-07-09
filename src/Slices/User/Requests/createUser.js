@@ -1,6 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const createUser = createAsyncThunk('users/createUser', async (user) => {
+export const createUser = createAsyncThunk('users/createUser', async (user,photo) => {
+    const form = new FormData();
+    form.append('file', photo);
+    const uploadFetch = await fetch('https://paprika-api.herokuapp.com/upload', {
+        method: 'POST',
+        body: form,
+    }); 
+    const uploadData = await uploadFetch.json();
+    user.profile_picture = uploadData.url;
     const createUserFetch = await fetch(`https://paprika-api.herokuapp.com/users/login`, {
         method: 'POST',
         headers: {
@@ -10,8 +18,8 @@ export const createUser = createAsyncThunk('users/createUser', async (user) => {
             name: user.name,
             lastname: user.lastname,
             email: user.email,
-            password: user.password,  
-
+            password: user.password, 
+            profile_picture: user.profile_picture, 
         }),
     });
     const userData = await createUserFetch.json();
