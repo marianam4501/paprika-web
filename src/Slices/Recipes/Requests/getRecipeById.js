@@ -21,15 +21,15 @@ export const getRecipe = createAsyncThunk('recipes/getRecipe', async (id) => {
 
 export const onGetRecipeFullfiled = (state, action) => {
     if (action.payload.error) {
-        state.users = null;
+        state.recipe = null;
         state.errorMessage = action.payload.message;
     } else {
         Mixpanel.identify(action.payload.id);
         Mixpanel.track(Mixpanel.TYPES.VIEW_RECIPE);
-        state.users = action.payload;
+        state.recipe = action.payload;
     }
 };
 
 export const onGetRecipeRejected = (state) => {
-    state.users = null;
+    state.recipe = null;
 }

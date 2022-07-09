@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import SimpleHeader from "../../Components/Header/index.js";
 
 export default function ViewRecipe() {
 
-  const [Recipe, setRecipe] = useState(null);
-
-
-  return (
+  //const [Recipe, setRecipe] = useState(null);
+  
+  const Recipe = useSelector(
+    (state) => state.recipe
+  );
+  console.log(Recipe);
+  
+  return  Recipe ? (
     <div>
       <SimpleHeader />
       <div className="flex justify-center items-center  mt-4 ">
@@ -71,8 +76,8 @@ export default function ViewRecipe() {
               </button>
             </div>
           </div>
-          <h2 className="titleCenter ml-[40px] md:ml-[180px]">
-            POLLO CON GALLETA OREO
+          <h2 className="titleCenter ml-[40px] md:ml-[180px]" color="black">
+            {Recipe.recipe.name}
           </h2>
         </div>
       </div>
@@ -108,5 +113,7 @@ export default function ViewRecipe() {
         </div>
       </div>
     </div>
-  );
+  ): <div>
+    Vacio
+  </div>;
 }
