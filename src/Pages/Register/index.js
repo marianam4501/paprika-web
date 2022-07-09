@@ -2,7 +2,7 @@ import Header from "../../Components/SimpleHeader/Index";
 import Footer from "../../Components/Footer/Index";
 import { createUser } from "../../Slices/User/Requests/createUser";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export default function Register() {
   const [UserPicture, setUserPicture] = useState(null);
