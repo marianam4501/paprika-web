@@ -1,19 +1,16 @@
 import Header from "../../Components/Header/index.js";
 import Footer from "../../Components/Footer/Index.js";
 import PostsList from "../../Components/FeedPosts/PostsList";
-// import { HeartIcon } from "@heroicons/react/outline";
-// import { useState } from "react";
-// import { v4 as uuidv4 } from "uuid";
 import { useEffect, useState } from "react";
-import { getRecipe } from "../../Slices/Recipes/Requests/getRecipeById.js";
-import { useDispatch } from "react-redux";
-import { Navigate } from "react-router-dom";
+//import { getRecipe } from "../../Slices/Recipes/Requests/getRecipeById.js";
+//import { useDispatch } from "react-redux";
+// import { Navigate } from "react-router-dom";
 
 
 // const ID = uuidv4();
 export default function Feed() {
   const [feed, setFeed] = useState(null);
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   
   useEffect (() => {
     const feedFetch = async() => {

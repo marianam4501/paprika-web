@@ -63,7 +63,7 @@ export default function ViewRecipe() {
           <div className="flex flex-row">
             <div>
               <img
-                src="paprika/pie_de_limon.png"
+                src={Recipe.recipe.image}
                 alt="fotography"
                 className="object-cover relative h-72 w-72 rounded-lg shadow-xl"
               />
@@ -71,8 +71,7 @@ export default function ViewRecipe() {
 
             <div className="columns-1 w-auto ">
               <div
-                className=" content-center"
-                class="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:trasnparent duration-300"
+                className=" content-center transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:trasnparent duration-300"
               >
 
                 <button type="button" onClick={handleLike}>
@@ -88,8 +87,7 @@ export default function ViewRecipe() {
               </div>
 
               <div
-                className="content-center"
-                class="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:trasnparent duration-300"
+                className="content-center transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:trasnparent duration-300"
               >
                 <button type="button">
                   <ClockIcon className="text-black h-8"></ClockIcon>
@@ -99,8 +97,7 @@ export default function ViewRecipe() {
               </div>
 
               <div
-                className="content-center"
-                class="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:trasnparent duration-300"
+                className="content-center transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:trasnparent duration-300"
               >
                 <button type="button" onClick={handleSave}>
                 {!isSaved && (

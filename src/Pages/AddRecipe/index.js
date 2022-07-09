@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from "../../Components/Header/index";
 import Footer from "../../Components/Footer/Index";
 import IngredientList from "../../Components/IngredientList/Index";
@@ -9,7 +9,6 @@ import { v4 as uuidv4 } from "uuid";
 import { PlusIcon } from "@heroicons/react/outline";
 import { createRecipe } from "../../Slices/Recipes/Requests/createRecipe";
 
-
 export function AddRecipe() {
   const [ingredients, setIngredients] = useState([]);
   const [recepiPicture, setRecepiPicture] = useState(null);
@@ -17,8 +16,9 @@ export function AddRecipe() {
     userId: "",
     name: "",
     steps: " ",
-    ingredients: [],
   });
+
+  const [recipeIngreidentList, setRecipeIngreidentList] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -33,6 +33,26 @@ export function AddRecipe() {
     setIngredients((prevIngredients) => {
       return [...prevIngredients, { id: uuidv4() }]; // use id?
     });
+  }
+
+  function handleInsertUpdate(ingredient) {
+    handleDeleteIngredientData(ingredient.id);
+    
+    setRecipeIngreidentList((prevIngredients) => {
+      return [...prevIngredients,  ingredient ]; // use id?
+    });
+    //   setRecipeIngreidentList(previousState => ({
+    //     recipeIngreidentList: {...previousState, ingredient}
+    // }));
+  }
+
+  console.log(recipeIngreidentList);
+
+  function handleDeleteIngredientData(id) {
+    const newIngredients = recipeIngreidentList.filter(
+      (ingredient) => ingredient.id !== id
+    );
+    setRecipeIngreidentList(newIngredients);
   }
 
   function handleDeleteIngredient(id) {
@@ -56,12 +76,11 @@ export function AddRecipe() {
           <h6 className="text-lg text-black">Name of the recipe:</h6>
           <input
             value={recipe.name}
-            onChange={ (evt) =>{
-                handleChange("name",evt.target.value);
-              }
-            }
+            onChange={(evt) => {
+              handleChange("name", evt.target.value);
+            }}
             type="text"
-            class="form-control block w-full px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding
+            className="form-control block w-full px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding
             border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-light-orange focus:outline-none"
             id="floatingInput"
             placeholder="best recipe ever"
@@ -82,7 +101,6 @@ export function AddRecipe() {
                     htmlFor="file-upload"
                     className="relative cursor-pointer bg-white rounded-md font-medium text-dark-orange hover:text-light-orange focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-light-orange"
                   >
-                    
                     <input
                       id="recepiPicture"
                       onChange={(evt) => {
@@ -123,6 +141,7 @@ export function AddRecipe() {
           <IngredientList
             ingredients={ingredients}
             handleDeleteIngredient={handleDeleteIngredient}
+            handleInsertUpdate={handleInsertUpdate}
           />
           <button
             type="submit"
@@ -132,16 +151,15 @@ export function AddRecipe() {
             <PlusIcon className="h-6"></PlusIcon>
           </button>
           {/*Text area for the steps*/}
-          <label class="form-label inline-block mb-2 text-black text-lg">
+          <label className="form-label inline-block mb-2 text-black text-lg">
             Steps:
           </label>
           <textarea
-              onChange={ (evt) =>{
-                handleChange("steps",evt.target.value);
-                }
-              }
-              value={recipe.steps}
-            class="
+            onChange={(evt) => {
+              handleChange("steps", evt.target.value);
+            }}
+            value={recipe.steps}
+            className="
             form-control block w-full px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding
             border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-light-orange focus:outline-none"
             id="exampleFormControlTextarea1"
@@ -152,12 +170,11 @@ export function AddRecipe() {
           <button
             type="submit"
             className="inline-flex justify-center mt-10 px-4 py-3 w-full border border-transparent shadow-sm text-lg font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
-                onClick={() => {
-                  dispatch(createRecipe(recipe,recepiPicture));
-                }}
+            onClick={() => {
+              dispatch(createRecipe(recipe, recepiPicture));
+            }}
           >
             <a href="Add_recipe">Post your recipe! 🍜</a>
-            
           </button>
         </div>
       </main>

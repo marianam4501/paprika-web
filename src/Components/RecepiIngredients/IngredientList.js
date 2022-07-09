@@ -10,7 +10,7 @@ export default function IngredientList({ Recepi }) {
           <tr>
             <th className="text-base font-medium">Ingrediente </th>
             <th className="text-base font-medium"> Cantidad</th>
-            <th className="text-base font-medium w-20"> Medida</th>
+            <th className="text-base font-medium"> Medida</th>
           </tr>
         </thead>
         <tbody>
