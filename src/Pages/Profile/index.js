@@ -1,14 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import React, { useState, useRef, useId, useEffect } from "react";
-
 import Header from "../../Components/Header/index";
 import Footer from "../../Components/Footer/Index";
 import RecepiesBlock from "../../Components/RecepiesBlock/index";
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../Slices/User/userSlice";
 
 export function Profile() {
-  return (
+  const [profile, setProfile] = useState(null);
+
+  const id = useSelector(
+    (state) => state.user.user.id
+  );
+  console.log(id);
+  const dispatch = useDispatch();
+
+  useEffect (() => {
+    const profileFetch = async() => {
+      const fetchProfile = await fetch (`https://paprika-api.herokuapp.com/users/${id}`);
+      
+      const profileJSON = await fetchProfile.json();
+      if (fetchProfile.status === 200) {
+        setProfile(profileJSON);
+      } else {
+        console.log("Error al cargar el perfil");
+      }
+    };
+    profileFetch();
+  },[]);
+
+  const loading = useSelector(
+    (state) => state.app.loading
+  );
+
+
+  return profile ? (
+    
     <div>
       <Header />
       <main className="static h-full mt-10 mb-20 mx-5 justify-center gap-y-5">
@@ -30,7 +57,7 @@ export function Profile() {
             </svg>
           </span>
           <label className="block text-lg font-normal text-black justify-self-center">
-            The leyend 47
+            {profile.user.name} {profile.user.lastname}
           </label>
           <div className="columns-2 justify-center mb-2">
             <div className="grid justify-center gap-y-2 mb-2">
@@ -54,7 +81,11 @@ export function Profile() {
                 type="submit"
                 className="inline-flex justify-center py-2 px-11 border border-transparent 
               shadow-sm text-sm font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+                onClick={() => {
+                dispatch(logout());
+                }}
               >
+            
                 Saved
               </button>
             </div>
@@ -69,5 +100,7 @@ export function Profile() {
         <Footer />
       </div>
     </div>
-  );
+  ): <div>
+      Vacio
+  </div> ;
 }
