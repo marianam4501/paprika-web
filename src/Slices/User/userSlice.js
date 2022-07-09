@@ -6,8 +6,8 @@ import { onPostCreateUserFullfiled ,  onPostCreateUserRejected, createUser } fro
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        user: null,
-        userIsLoggedIn: false,
+        user: {},
+        userIsLoggedIn: true,
         errorMessage: "",
     },
     reducers: userReducers,
@@ -19,6 +19,8 @@ const userSlice = createSlice({
             .addCase(createUser.rejected, onPostCreateUserRejected)
     }
 });
+
+
 
 export const { logout } = userSlice.actions;
 

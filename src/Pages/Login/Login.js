@@ -19,7 +19,7 @@ export default function Login() {
   ) : (
     <div>
       <SimpleHeader />
-      <main className="static h-full mt-10 mb-72 mx-10 justify-center gap-y-5">
+      <main className="static h-full mt-10 mb-72 mx-10 justify-center gap-y-5 ">
         <div className="grid mt-1 mb-0 columns-1 justify-center gap-y-5">
           <h1 className="text-4xl">🍟 ¡Bienvenido! 🍗</h1>
           <span className="inline-block h-40 w-40 rounded-full overflow-hidden bg-gray-500 justify-self-center">
@@ -37,7 +37,7 @@ export default function Login() {
 
         <h6 className="text-lg text-black">Correo Electrónico:</h6>
         <input
-          class="mb-5 form-control block w-full px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding
+          className="appearance-none mb-5 form-control block w-full px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding
             border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-light-orange focus:outline-none"
           type="email"
           placeholder="Ingrese su correo electrónico"

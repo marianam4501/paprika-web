@@ -51,7 +51,6 @@ export function Home() {
         </div>
 
         
-
         <div className="mx-5 columns-2 -z-0">
           <div className="px-1 flex flex-col space-y-5">
             {/*   IMG 1  */}
