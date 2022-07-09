@@ -6,8 +6,8 @@ import { onPostCreateUserFullfiled ,  onPostCreateUserRejected, createUser } fro
 const userSlice = createSlice({
     name: 'user',
     initialState: {
-        user: {},
-        userIsLoggedIn: true,
+        user: null,
+        userIsLoggedIn: false,
         errorMessage: "",
     },
     reducers: userReducers,

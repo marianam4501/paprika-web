@@ -27,6 +27,7 @@ export const postLogin = createAsyncThunk('users/postLogin', async (credentials)
 
 export const onPostLoginFullfiled = (state, action) => {
     if (action.payload.error) {
+        console.log("si sirve");
         state.userIsLoggedIn = false;
         state.user = null;
         state.errorMessage = action.payload.message;
@@ -36,6 +37,7 @@ export const onPostLoginFullfiled = (state, action) => {
             $name: action.payload.name,
             $email: action.payload.email,
         });
+        console.log("si sirve");
         state.userIsLoggedIn = true;
         state.user = action.payload;
     }
