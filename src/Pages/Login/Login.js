@@ -71,7 +71,7 @@ export default function Login() {
             }}
             
           >
-            <a >Iniciar Sesión</a>
+            <a href="/Feed">Iniciar Sesión</a>
           </button>
           <h3 className="text-base font-normal tracking-wide text-center px-10">
             ó

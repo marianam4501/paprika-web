@@ -12,7 +12,7 @@ export function Profile() {
   const id = useSelector(
     (state) => state.user.user.id
   );
-  console.log(id);
+  
   const dispatch = useDispatch();
 
   useEffect (() => {

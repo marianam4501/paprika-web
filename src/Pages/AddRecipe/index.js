@@ -1,19 +1,27 @@
-import React, { useState } from "react";
+import React, { useState  } from "react";
 import Header from "../../Components/Header/index";
 import Footer from "../../Components/Footer/Index";
 import IngredientList from "../../Components/IngredientList/Index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { v4 as uuidv4 } from "uuid";
 
 import { PlusIcon } from "@heroicons/react/outline";
 import { createRecipe } from "../../Slices/Recipes/Requests/createRecipe";
 
+
+
+
 export function AddRecipe() {
+  const loggedUserId = useSelector(
+    (state) => state.user.user.id
+  );
+
+
   const [ingredients, setIngredients] = useState([]);
   const [recepiPicture, setRecepiPicture] = useState(null);
   const [recipe, setRecipe] = useState({
-    userId: "",
+    userId: loggedUserId,
     name: "",
     steps: " ",
   });
@@ -46,7 +54,6 @@ export function AddRecipe() {
     // }));
   }
 
-  console.log(recipeIngreidentList);
 
   function handleDeleteIngredientData(id) {
     const newIngredients = recipeIngreidentList.filter(
@@ -171,10 +178,11 @@ export function AddRecipe() {
             type="submit"
             className="inline-flex justify-center mt-10 px-4 py-3 w-full border border-transparent shadow-sm text-lg font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
             onClick={() => {
-              dispatch(createRecipe(recipe, recepiPicture));
+              
+              dispatch(createRecipe({...recipe,recipeIngreidentList}, recepiPicture));
             }}
-          >
-            <a href="Add_recipe">Post your recipe! 🍜</a>
+          > Post your recipe! 🍜
+            {/* <a href="Add_recipe"></a> */}
           </button>
         </div>
       </main>
