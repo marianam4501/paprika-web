@@ -11,8 +11,6 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [lastName, setlastName] = useState("");
-
-  const userToken = useSelector((state) => state.user.userToken);
   
   const dispatch = useDispatch();
 

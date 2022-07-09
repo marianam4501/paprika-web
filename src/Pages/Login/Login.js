@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { Navigate } from "react-router-dom";
 import { postLogin } from "../../Slices/User/Requests/postLogin";
+import Mixpanel from "../../services/mixpanel";
 
 export default function Login() {
   const [email, setEmail] = useState("");

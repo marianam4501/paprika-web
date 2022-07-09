@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import Mixpanel from "../../../services/mixpanel";
 
 export const getRecipe = createAsyncThunk('recipes/getRecipe', async (id) => {
     const recipeFetch = await fetch(`https://paprika-api.herokuapp.com/recipes/${id}`, {
@@ -23,6 +24,8 @@ export const onGetRecipeFullfiled = (state, action) => {
         state.users = null;
         state.errorMessage = action.payload.message;
     } else {
+        Mixpanel.identify(action.payload.id);
+        Mixpanel.track(Mixpanel.TYPES.VIEW_RECIPE);
         state.users = action.payload;
     }
 };

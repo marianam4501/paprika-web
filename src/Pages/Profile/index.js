@@ -4,9 +4,7 @@ import Header from "../../Components/Header/index";
 import Footer from "../../Components/Footer/Index";
 import RecepiesBlock from "../../Components/RecepiesBlock/index";
 import { useDispatch, useSelector } from "react-redux";
-import { getProfile } from "../../Slices/User/Requests/getProfile";
 import { logout } from "../../Slices/User/userSlice";
-import getStoredState from "redux-persist/es/getStoredState";
 
 export function Profile() {
   const [profile, setProfile] = useState(null);
@@ -14,20 +12,14 @@ export function Profile() {
   const id = useSelector(
     (state) => state.user.user.id
   );
-  
+  console.log(id);
   const dispatch = useDispatch();
 
   useEffect (() => {
     const profileFetch = async() => {
-
-      const fetchProfile = await fetch (`https://paprika-api.herokuapp.com/users/${id}`,{
-        method:'GET',
-        headers: {
-          "Content-type": "application/json"
-        },
-      });
+      const fetchProfile = await fetch (`https://paprika-api.herokuapp.com/users/${id}`);
+      
       const profileJSON = await fetchProfile.json();
-      console.log("siuu");
       if (fetchProfile.status === 200) {
         setProfile(profileJSON);
       } else {
@@ -37,18 +29,13 @@ export function Profile() {
     profileFetch();
   },[]);
 
- // const profile = useSelector(
-   //(state) => state.profile.user
-  //);
-
-  //console.log(profile.user.name + "print de  vista")
-
   const loading = useSelector(
     (state) => state.app.loading
   );
 
 
-  return (
+  return profile ? (
+    
     <div>
       <Header />
       <main className="static h-full mt-10 mb-20 mx-5 justify-center gap-y-5">
@@ -70,7 +57,7 @@ export function Profile() {
             </svg>
           </span>
           <label className="block text-lg font-normal text-black justify-self-center">
-            {profile.user.name} {profile.user.lastName}
+            {profile.user.name} {profile.user.lastname}
           </label>
           <div className="columns-2 justify-center mb-2">
             <div className="grid justify-center gap-y-2 mb-2">
@@ -113,5 +100,7 @@ export function Profile() {
         <Footer />
       </div>
     </div>
-  );
+  ): <div>
+      Vacio
+  </div> ;
 }

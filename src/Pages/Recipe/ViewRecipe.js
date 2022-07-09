@@ -1,6 +1,11 @@
+import { useEffect, useState } from "react";
 import SimpleHeader from "../../Components/Header/index.js";
 
 export default function ViewRecipe() {
+
+  const [Recipe, setRecipe] = useState(null);
+
+
   return (
     <div>
       <SimpleHeader />

@@ -1,10 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import Mixpanel from "../../../services/mixpanel";
 
 
 export const postLogin = createAsyncThunk('users/postLogin', async (credentials) => {
-
-    console.log(credentials.email );
-
     const loginFetch = await fetch(`https://paprika-api.herokuapp.com/users/login`, {
         method: 'POST',
         headers: {
@@ -33,9 +31,13 @@ export const onPostLoginFullfiled = (state, action) => {
         state.user = null;
         state.errorMessage = action.payload.message;
     } else {
+        Mixpanel.identify(action.payload.id);
+        Mixpanel.people.set({
+            $name: action.payload.name,
+            $email: action.payload.email,
+        });
         state.userIsLoggedIn = true;
         state.user = action.payload;
-        state.userToken = action.payload.token;
     }
 };
 
