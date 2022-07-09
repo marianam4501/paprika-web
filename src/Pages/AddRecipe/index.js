@@ -7,29 +7,17 @@ import { v4 as uuidv4 } from "uuid";
 
 import { PlusIcon } from "@heroicons/react/outline";
 
-const LOCAL_STORAGE_KEY = "todoApp.todos";
 
 export function AddRecipe() {
   const [ingredients, setIngredients] = useState([]);
-
   const [recepiPicture, setRecepiPicture] = useState(null);
+  const [recipe,setRecipe] = useState();
 
   function handleAddIngredient(e) {
     setIngredients((prevIngredients) => {
       return [...prevIngredients, { id: uuidv4() }]; // use id?
     });
   }
-
-  useEffect(() => {
-    const storedIngredients = JSON.parse(
-      localStorage.getItem(LOCAL_STORAGE_KEY)
-    );
-    if (storedIngredients) setIngredients(storedIngredients);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(ingredients));
-  }, [ingredients]);
 
   function handleDeleteIngredient(id) {
     const newIngredients = ingredients.filter(
@@ -51,6 +39,8 @@ export function AddRecipe() {
           {/*Form*/}
           <h6 className="text-lg text-black">Name of the recipe:</h6>
           <input
+            value={recipe.name}
+            on
             type="text"
             class="form-control block w-full px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding
             border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-light-orange focus:outline-none"
@@ -73,7 +63,7 @@ export function AddRecipe() {
                     htmlFor="file-upload"
                     className="relative cursor-pointer bg-white rounded-md font-medium text-dark-orange hover:text-light-orange focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-light-orange"
                   >
-                    {/* <span>Upload a Picture</span> */}
+                    
                     <input
                       id="recepiPicture"
                       onChange={(evt) => {

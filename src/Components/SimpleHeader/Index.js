@@ -1,6 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 const navigation = [
   { name: "Home", href: "/", current: false },
@@ -13,7 +13,6 @@ function classNames(...classes) {
 }
 
 export default function SimpleHeader() {
-  const dispatch = useDispatch();
 
   return (
     <>
@@ -26,6 +25,7 @@ export default function SimpleHeader() {
                   <div className="flex items-center">
                     {/* LOGO */}
                     <div className="flex-shrink-0">
+                      <Link to=""></Link>
                       <img
                         className="object-cover relative h-14 w-22"
                         src="https://rb.gy/iq70yv"

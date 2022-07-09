@@ -1,119 +1,145 @@
-import { useEffect, useState } from "react";
+import Header from "../../Components/Header/index.js";
+import Footer from "../../Components/Footer/Index.js";
+import IngredientList from "../../Components/RecepiIngredients/IngredientList";
+import {  useState } from "react";
 import { useSelector } from "react-redux";
-import SimpleHeader from "../../Components/Header/index.js";
+
+import { HeartIcon, ClockIcon, BookmarkIcon } from "@heroicons/react/solid";
+
+
 
 export default function ViewRecipe() {
+  const [likes, setLikes] = useState(100);
+  const [liked, setLiked] = useState(false);
+  const time = 13;
+  const [save, setSave] = useState("Save");
+  const [isSaved, setIsSaved] = useState();
 
-  //const [Recipe, setRecipe] = useState(null);
-  
+  function handleLike(){
+    setLiked(!liked)
+    handleNumLike()
+  }
+
+  function handleSave(){
+    setIsSaved(!isSaved)
+    setSaveText()
+  }
+
+  function setSaveText() {
+    
+    if(!isSaved){
+      setSave("Saved!")
+    }else{
+      setSave("Save")
+    }
+    
+  }
+
+  function handleNumLike() {
+    
+    if(!liked){
+      setLikes(likes + 1)
+    }else{
+      setLikes(likes - 1)
+    }
+    
+  }
+
   const Recipe = useSelector(
     (state) => state.recipe
   );
-  console.log(Recipe);
-  
-  return  Recipe ? (
-    <div>
-      <SimpleHeader />
-      <div className="flex justify-center items-center  mt-4 ">
-        <div
-          className=" recipe_BackgroundBlk border-solid border-4 ">
-          <div >
-            <img
-              src={require("../../Images/Paprika-logo.png")}
-              alt="Logo"
-              className=" h-[300px] w-[600px] mt-4"
-            />
-          </div>
 
-          <div className="grid grid-rows-3 grid-flow-col gap-4 ">
-            <div className="row-span-3 ...">
+  return  Recipe ? (
+    
+    <>
+      <div>
+        <Header />
+      </div>
+      <main className="mx-10 pt-5 h-full justify-center content-center">
+        <label className="py-5 text-center text-2xl font-normal text-black ">
+         {Recipe.recipe.name}
+        </label>
+        <div className="justify-center items-center  my-5">
+          <div className="flex flex-row">
+            <div>
               <img
-                src="https://images.pexels.com/photos/2338407/pexels-photo-2338407.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                src={Recipe.recipe.image}
                 alt="fotography"
-                className=" h-[240px] w-[280px] ml-2 mb-2 
-                md:h-[300px] md:w-[500px] md:ml-24  md:mb-20 sm:h-6 sm:w-9  "
+                className="object-cover relative h-72 w-72 rounded-lg shadow-xl"
               />
             </div>
-            <div
-              className=" content-center"
-              class="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:trasnparent duration-300"
-            >
-              <button type="button">
-                <img
-                  src={require("../../Images/like.png")}
-                  alt="fotography"
-                  className="h-[25px] w-[25px] md:h-[55px] md:w-[45px] "
-                />
-                <h3> 12.4 k</h3>
-              </button>
-            </div>
 
-            <div
-              className="content-center"
-              class="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:trasnparent duration-300"
-            >
-              <button type="button">
-                <img
-                  src={require("../../Images/time.png")}
-                  alt="fotography"
-                  className="h-[25px] w-[25px] md:h-[45px] md:w-[45px]"
-                />
+            <div className="columns-1 w-auto ">
+              <div
+                className=" content-center"
+                class="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:trasnparent duration-300"
+              >
 
-                <h3> 2 h </h3>
-              </button>
-            </div>
+                <button type="button" onClick={handleLike}>
+                {!liked && (
+                  <HeartIcon className="text-black h-8"></HeartIcon>
+                )}
+                {liked && (
+                  <HeartIcon className="text-red-600 h-8"></HeartIcon>
+                )}
+                  
+                  <label className="text-black text-sm">{likes}</label>
+                </button>
+              </div>
 
-            <div
-              className="content-center"
-              class="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:trasnparent duration-300"
-            >
-              <button type="button">
-                <img
-                  src={require("../../Images/save.png")}
-                  alt="fotography"
-                  className="h-[25px] w-[25px] md:h-[45px] md:w-[45px]"
-                />
-              </button>
+              <div
+                className="content-center"
+                class="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:trasnparent duration-300"
+              >
+                <button type="button">
+                  <ClockIcon className="text-black h-8"></ClockIcon>
+
+                  <label className="text-black text-sm">{time}min</label>
+                </button>
+              </div>
+
+              <div
+                className="content-center"
+                class="transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-110 hover:trasnparent duration-300"
+              >
+                <button type="button" onClick={handleSave}>
+                {!isSaved && (
+                  <BookmarkIcon className="text-black h-8"></BookmarkIcon>
+                )}
+                {isSaved && (
+                  <BookmarkIcon className="text-light-orange h-8"></BookmarkIcon>
+                )}
+                  <label className="text-black text-sm">{save}</label>
+                </button>
+              </div>
             </div>
           </div>
-          <h2 className="titleCenter ml-[40px] md:ml-[180px]" color="black">
-            {Recipe.recipe.name}
-          </h2>
         </div>
-      </div>
-      <div className="flex justify-center items-center ">
-        <div
-          className="recipe_BackgroundOrg flex justify-center
-         items-center object-contain w-screen md:w-[705px] mb-4 border-solid border-4"
-        >
-          <div className="bg-white ml-4 mr-4 mb-4 mt-4 items-center ">
-            <table className="table-fixed border-separate border border-black text-4xl">
-              <thead className="border border-black">
-                <tr>
-                  <th className="border border-black">Ingredient </th>
-                  <th className="border border-black"> Amount</th>
-                </tr>
-              </thead>
-              <tbody className="text-center ">
-                <tr>
-                  <td className="border border-black">Chayote</td>
-                  <td className="border border-black">4 kilos</td>
-                </tr>
-                <tr>
-                  <td className="border border-black">Piña</td>
-                  <td className="border border-black">12 kilos</td>
-                </tr>
-                <tr>
-                  <td className="border border-black">Uvas</td>
-                  <td className="border border-black">2 viñedos</td>
-                </tr>
-              </tbody>
-            </table>
+        
+        <label className="ext-base font-normal text-black ">
+         Pasos:
+        </label>
+
+        <div className="shadow-xl  bg-black rounded-lg h-40 w-full my-5">
+          <div className="mx-5 py-2">
+              <p className="text-white font-normal text-sm">{Recipe.recipe.steps}</p>
           </div>
         </div>
-      </div>
-    </div>
+        
+        <label className=" text-base font-normal text-black ">
+         Ingredientes:
+        </label>
+
+        {/* INGREDIENTS */}
+        <IngredientList Recepi={Recipe.recipe} />
+
+        
+      </main>
+      <div className="static inset-x-0 bottom-0 mt-32">
+          <Footer />
+        </div>
+    </>
   ): <div>
-    Vacio
-  </div>;
+  Vacio
+</div>;;
 }
