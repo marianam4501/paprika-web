@@ -63,7 +63,7 @@ export function AddRecipe() {
                     htmlFor="file-upload"
                     className="relative cursor-pointer bg-white rounded-md font-medium text-dark-orange hover:text-light-orange focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-light-orange"
                   >
-                    {/* <span>Upload a Picture</span> */}
+                    
                     <input
                       id="recepiPicture"
                       onChange={(evt) => {
