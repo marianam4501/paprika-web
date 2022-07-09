@@ -19,8 +19,6 @@ export default function App() {
       <Route path="Feed" element = { <Feed/>}/>
       <Route path="Add_recipe" element={ <AddRecipe />} />
       <Route path="Profile" element={ <Profile />} />
-
-
     </Routes>
   )
 }

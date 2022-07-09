@@ -11,7 +11,7 @@ const appSlice = createSlice({
     reducers: {
         toggleLoading: (state) => {
             state.loading = !state.loading;
-        }
+        },
     },
     extraReducers(builder) {
         builder

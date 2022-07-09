@@ -1,46 +1,10 @@
 import Header from "../../Components/Header/index.js";
 import Footer from "../../Components/Footer/Index.js";
 import IngredientList from "../../Components/RecepiIngredients/IngredientList";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import { HeartIcon, ClockIcon, BookmarkIcon } from "@heroicons/react/solid";
-import { useState } from "react";
-
-
-const Recepi = 
-  {
-    id: 1,
-    userId: 2,
-    name: "Pie de limón",
-    ingredients: [
-      {
-        id: 1,
-        name: "Galleta María",
-        measurement: "unidad(es)",
-        quantity: 3,
-      },
-      {
-        id: 2,
-        name: "Mantequilla",
-        measurement: "unidad(es)",
-        quantity: 2,
-      },
-      {
-        id: 3,
-        name: "Leche condensada",
-        measurement: "taza(s)",
-        quantity: 1,
-      },
-      {
-        id: 4,
-        name: "Limón",
-        measurement: "mililitro(s)",
-        quantity: 250,
-      },
-    ],
-    steps: "Duración: 1 hora. Dificultad: Intermedia.",
-    image: "https://i.ibb.co/GM1DBkM/pie-de-limon.png",
-  }
-;
 
 export default function ViewRecipe() {
   const [likes, setLikes] = useState(100);
@@ -53,6 +17,11 @@ export default function ViewRecipe() {
     setLiked(!liked)
     handleNumLike()
   }
+  
+  const Recipe = useSelector(
+    (state) => state.recipe
+  );
+
 
   function handleSave(){
     setIsSaved(!isSaved)
@@ -80,7 +49,7 @@ export default function ViewRecipe() {
   }
 
 
-  return (
+  return Recipe ? (
     
     <>
       <div>
@@ -88,13 +57,13 @@ export default function ViewRecipe() {
       </div>
       <main className="mx-10 pt-5 h-full justify-center content-center">
         <label className="py-5 text-center text-2xl font-normal text-black ">
-         {Recepi.name}
+         {Recipe.recipe.name}
         </label>
         <div className="justify-center items-center  my-5">
           <div className="flex flex-row">
             <div>
               <img
-                src={Recepi.image}
+                src={Recipe.recipe.image}
                 alt="fotography"
                 className="object-cover relative h-72 w-72 rounded-lg shadow-xl"
               />
@@ -145,6 +114,7 @@ export default function ViewRecipe() {
               </div>
             </div>
           </div>
+
         </div>
         
         <label className="ext-base font-normal text-black ">
@@ -153,16 +123,17 @@ export default function ViewRecipe() {
 
         <div className="shadow-xl  bg-black rounded-lg h-40 w-full my-5">
           <div className="mx-5 py-2">
-              <p className="text-white font-normal text-sm">{Recepi.steps}</p>
+              <p className="text-white font-normal text-sm">{Recipe.recipe.steps}</p>
           </div>
         </div>
+
         
         <label className=" text-base font-normal text-black ">
          Ingredientes:
         </label>
 
         {/* INGREDIENTS */}
-        <IngredientList Recepi={Recepi} />
+        <IngredientList Recipe={Recipe.recipe} />
 
         
       </main>
@@ -170,5 +141,5 @@ export default function ViewRecipe() {
           <Footer />
         </div>
     </>
-  );
+  ):<div>Vacio</div> ;
 }

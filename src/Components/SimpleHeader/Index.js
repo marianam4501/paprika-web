@@ -13,9 +13,9 @@ function classNames(...classes) {
 }
 
 export default function SimpleHeader() {
+
   return (
     <>
-      
       <div className="min-h-full">
         <Disclosure as="nav" className="bg-black">
           {({ open }) => (
@@ -51,6 +51,7 @@ export default function SimpleHeader() {
                           </a>
                         ))}
                       </div>
+                   
                     </div>
                   </div>
                   <div className="-mr-2 flex md:hidden">
@@ -69,7 +70,7 @@ export default function SimpleHeader() {
                   </div>
                 </div>
               </div>
-                
+
               <Disclosure.Panel className="md:hidden">
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-dark-orange">
                   {navigation.map((item) => (
@@ -89,7 +90,6 @@ export default function SimpleHeader() {
                     </Disclosure.Button>
                   ))}
                 </div>
-                
               </Disclosure.Panel>
             </>
           )}
