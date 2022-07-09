@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Link } from "react-router-dom";
 import {
   BellIcon,
   MenuIcon,
@@ -22,7 +21,7 @@ const navigation = [
 const userNavigation = [
   { name: "Your Profile", href: "/Profile" },
   { name: "Settings", href: "#" },
-  { name: "Sign out", href: "/logOut" },
+  { name: "Sign out", href: "#" },
 ];
 
 function classNames(...classes) {
@@ -43,14 +42,11 @@ export default function Header() {
                   <div className="flex items-center">
                     {/* Paprika logo */}
                     <div className="flex-shrink-0">
-                      <Link to="/">
                       <img
                         className="object-cover relative h-14 w-22"
                         src="https://rb.gy/iq70yv"
                         alt="Logo Paprika"
                       />
-                      </Link>
-                      
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
