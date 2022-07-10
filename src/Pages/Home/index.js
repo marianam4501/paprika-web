@@ -17,7 +17,7 @@ export function Home() {
         <div className="h-full w-full pt-44 fixed space-y-20 z-30">
           <div className="bg-white h-56 w-full gap-0 grid justify-items-center">
             <h1 className="text-base font-medium tracking-wide text-center pt-5 px-10 my-3">
-              Unete a nuestra comunidad de cocineros
+              Únete a nuestra comunidad de cocineros
             </h1>
 
             <button
@@ -28,7 +28,7 @@ export function Home() {
                 Mixpanel.track(Mixpanel.TYPES.CREATE_ACOUNT);
               }}
             >
-              <a href="register">Unete a Paprika</a>
+              <a href="register">Únete a Paprika</a>
             </button>
             <h3 className="text-base font-medium tracking-wide text-center px-10">
               o

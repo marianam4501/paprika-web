@@ -13,7 +13,7 @@ export default function RecepiesColumn({ post }) {
     >
       <Link to="/recipe">
         <img
-          className="object-cover relative h-60 w-44 rounded-lg"
+          className="object-cover h-60 w-44 rounded-lg"
           src={post.image}
           alt={post.name}
           onClick={() => {
@@ -22,7 +22,7 @@ export default function RecepiesColumn({ post }) {
           }}
         />
       </Link>
-      <label className="text-black text-sm ">{post.name}</label>
+      <label className="text-black text-base ">{post.name}</label>
     </div>
   );
 }

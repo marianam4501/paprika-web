@@ -1,4 +1,4 @@
-import React, { useState  } from "react";
+import React, { useState } from "react";
 import Header from "../../Components/Headers/Header";
 import Footer from "../../Components/Footer/Index";
 import IngredientList from "../../Components/IngredientList/Index";
@@ -9,14 +9,8 @@ import { v4 as uuidv4 } from "uuid";
 import { PlusIcon } from "@heroicons/react/outline";
 import { createRecipe } from "../../Slices/Recipes/Requests/createRecipe";
 
-
-
-
 export function AddRecipe() {
-  const loggedUserId = useSelector(
-    (state) => state.user.user.id
-  );
-
+  const loggedUserId = useSelector((state) => state.user.user.id);
 
   const [ingredients, setIngredients] = useState([]);
   const [recipePicture, setRecepiPicture] = useState(null);
@@ -45,15 +39,14 @@ export function AddRecipe() {
 
   function handleInsertUpdate(ingredient) {
     handleDeleteIngredientData(ingredient.id);
-    
+
     setRecipeIngreidentList((prevIngredients) => {
-      return [...prevIngredients,  ingredient ]; // use id?
+      return [...prevIngredients, ingredient]; // use id?
     });
     //   setRecipeIngreidentList(previousState => ({
     //     recipeIngreidentList: {...previousState, ingredient}
     // }));
   }
-
 
   function handleDeleteIngredientData(id) {
     const newIngredients = recipeIngreidentList.filter(
@@ -180,10 +173,12 @@ export function AddRecipe() {
             className="inline-flex justify-center mt-10 px-4 py-3 w-full border border-transparent shadow-sm text-lg font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
             onClick={() => {
               console.log(recipePicture);
-              const _recipe =  {...recipe,recipeIngreidentList};
-              dispatch(createRecipe({_recipe, recipePicture}));
+              const _recipe = { ...recipe, recipeIngreidentList };
+              dispatch(createRecipe({ _recipe, recipePicture }));
             }}
-          > Post your recipe! 🍜
+          >
+            {" "}
+            Post your recipe! 🍜
             {/* <a href="Add_recipe"></a> */}
           </button>
         </div>
