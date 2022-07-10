@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { logout } from "../../Slices/User/userSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -13,12 +13,13 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/outline";
 
+/*
 const user = {
   name: "The_legend_47",
   email: "tom@example.com",
   imageUrl: "https://i.ibb.co/f0fyGZv/taco.png",
 };
-
+*/
 const navigation = [
   { name: "Inicio", href: "/Feed", current: false },
   { name: "Agregar Receta", href: "/Add_recipe", current: false },
@@ -35,6 +36,7 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const user  =  useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const navigationB = useNavigate();
   function logOut(item) {
@@ -187,7 +189,7 @@ export default function Header() {
                     <div className="flex-shrink-0">
                       <img
                         className="h-10 w-10 rounded-full"
-                        src={user.imageUrl}
+                        src={user.profile_picture}
                         alt=""
                       />
                     </div>
