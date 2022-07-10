@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import React, { useState, useRef, useId, useEffect } from "react";
-import Header from "../../Components/Header";
+import Header from "../../Components/Headers/Header";
 import Footer from "../../Components/Footer/Index";
 import RecepiesBlock from "../../Components/RecepiesBlock/index";
 import { useDispatch, useSelector } from "react-redux";

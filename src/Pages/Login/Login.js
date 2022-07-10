@@ -1,4 +1,4 @@
-import SimpleHeader from "../../Components/SimpleHeader/Index.js";
+import SimpleHeader from "../../Components/Headers/Index.js";
 import Footer from "../../Components/Footer/Index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
