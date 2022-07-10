@@ -1,4 +1,4 @@
-import Header from "../../Components/Header/Index.js";
+import Header from "../../Components/Header/index.js";
 import Footer from "../../Components/Footer/Index.js";
 import PostsList from "../../Components/FeedPosts/PostsList";
 import { useEffect, useState } from "react";
