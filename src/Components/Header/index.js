@@ -15,8 +15,8 @@ const user = {
 };
 
 const navigation = [
-  { name: "Inicio", href: "/Feed", current: false },
-  { name: "Agregar receta", href: "/Add_recipe", current: false },
+  { name: "Home", href: "#", current: false },
+  { name: "Stuff", href: "#", current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "/Profile" },
