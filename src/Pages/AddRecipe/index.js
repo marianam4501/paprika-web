@@ -19,7 +19,7 @@ export function AddRecipe() {
 
 
   const [ingredients, setIngredients] = useState([]);
-  const [recepiPicture, setRecepiPicture] = useState(null);
+  const [recipePicture, setRecepiPicture] = useState(null);
   const [recipe, setRecipe] = useState({
     userId: loggedUserId,
     name: "",
@@ -96,7 +96,7 @@ export function AddRecipe() {
           <label className="block text-lg  text-black">Meal Picture:</label>
 
           <div className="content-center mt-1 flex justify-center px-6 pt-5 pb-6 border-2 h-auto border-gray-300 border-dashed rounded-md">
-            {!recepiPicture && (
+            {!recipePicture && (
               <div className=" space-y-1 text-center justify-center mt-5">
                 <div className="columns-1 justify-center  text-sm text-gray-600">
                   <img
@@ -113,7 +113,8 @@ export function AddRecipe() {
                       onChange={(evt) => {
                         setRecepiPicture(evt.target.files[0]);
                       }}
-                      name="file-upload"
+                      multiple={false}
+                      name="recepiPicture"
                       type="file"
                       className="w-[185px]"
                     />
@@ -122,10 +123,10 @@ export function AddRecipe() {
               </div>
             )}
 
-            {recepiPicture && (
+            {recipePicture && (
               <div>
                 <img
-                  src={URL.createObjectURL(recepiPicture)}
+                  src={URL.createObjectURL(recipePicture)}
                   alt="Product preview"
                   className="rounded-xl"
                 />
@@ -178,8 +179,9 @@ export function AddRecipe() {
             type="submit"
             className="inline-flex justify-center mt-10 px-4 py-3 w-full border border-transparent shadow-sm text-lg font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
             onClick={() => {
-              
-              dispatch(createRecipe({...recipe,recipeIngreidentList}, recepiPicture));
+              console.log(recipePicture);
+              const _recipe =  {...recipe,recipeIngreidentList};
+              dispatch(createRecipe({_recipe, recipePicture}));
             }}
           > Post your recipe! 🍜
             {/* <a href="Add_recipe"></a> */}

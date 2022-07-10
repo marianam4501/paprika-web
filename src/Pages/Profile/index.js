@@ -12,13 +12,11 @@ export function Profile() {
 
   const id = useSelector((state) => state.user.user.id);
 
-  
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     const profileFetch = async () => {
-      console.log(id)
+      console.log(id);
       const fetchProfile = await fetch(
         `https://paprika-api.herokuapp.com/users/${id}`
       );
@@ -33,23 +31,23 @@ export function Profile() {
     profileFetch();
   }, []);
 
-  console.log("ID: " + id)
-  
+  console.log("ID: " + id);
+  console.log(profile);
 
   return profile ? (
     <div>
       <Header />
       <main className="static h-full mt-10 mb-20 mx-5 justify-center gap-y-5">
         <div className="grid mt-1 mb-10 columns-1 justify-center gap-y-5">
-        {profile.image && (
+          {profile.user.profile_picture !== "" && (
             <img
-              className="rounded-full h-60 w-60"
-              src={profile.image} //profile image
+              className="object-cover  pa-5 rounded-full h-72 w-72"
+              src={profile.user.profile_picture} //profile image
               alt="userPic"
             />
           )}
           {/* <div className="h-6 w-full grid justify-items-stretch"></div> */}
-          {!profile.image && (
+          {profile.user.profile_picture === "" && (
             <span className="inline-block h-40 w-40 rounded-full overflow-hidden bg-gray-500 justify-self-center">
               <svg
                 className="h-full w-full text-gray-300"
@@ -105,6 +103,6 @@ export function Profile() {
       </div>
     </div>
   ) : (
-    <Spinner/>
+    <Spinner />
   );
 }

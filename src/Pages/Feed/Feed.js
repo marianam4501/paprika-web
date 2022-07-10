@@ -2,7 +2,7 @@ import Header from "../../Components/Header/index.js";
 import Footer from "../../Components/Footer/Index.js";
 import PostsList from "../../Components/FeedPosts/PostsList";
 import { useEffect, useState } from "react";
-import Spinner from "../../Components/Loading/index";
+// import Spinner from "../../Components/Loading/index";
 
 
 // const ID = uuidv4();
@@ -37,6 +37,6 @@ export default function Feed() {
       </main>
     </>
   ) : (
-    <Spinner/>
+    <div></div>
   );
 }

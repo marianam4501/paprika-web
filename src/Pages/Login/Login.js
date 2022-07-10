@@ -69,7 +69,8 @@ export default function Login() {
             onClick={() => {
               dispatch(postLogin({email, password}));
             }}>
-             <a href="/Feed">Iniciar Sesión</a>
+             {/* <a href="/Feed">Iniciar Sesión</a> */}
+             hp redux
           </button>
           <h3 className="text-base font-normal tracking-wide text-center px-10">
             ó
