@@ -29,7 +29,7 @@ export function Profile() {
       }
     };
     profileFetch();
-  }, []);
+  }, [id]);
 
   console.log("ID: " + id);
   console.log(profile);

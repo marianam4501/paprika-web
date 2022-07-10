@@ -1,6 +1,6 @@
 //import { Link } from "react-router-dom";
 import React from "react";
-import SimpleHeader from "../../Components/Headers/Index";
+import SimpleHeader from "../../Components/Headers/SimpleHeader";
 import Footer from "../../Components/Footer/Index";
 import Mixpanel from "../../services/mixpanel";
 

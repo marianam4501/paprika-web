@@ -1,4 +1,4 @@
-import Header from "../../Components/Headers/Index";
+import Header from "../../Components/Headers/SimpleHeader";
 import Footer from "../../Components/Footer/Index";
 import { createUser } from "../../Slices/User/Requests/createUser";
 import { useState } from "react";
