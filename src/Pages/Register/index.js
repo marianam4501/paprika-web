@@ -9,8 +9,20 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [lastName, setlastName] = useState("");
+  const [pictureURL, setPictureURL] = useState("https://ci0137.s3.amazonaws.com/paprika/defaultUser.png");
   const [UserPicture, setUserPicture] = useState(null);
   const dispatch = useDispatch();
+
+  const upload = async () => {
+    const form = new FormData();
+    form.append('file', UserPicture);
+      const uploadFetch = await fetch('https://paprika-api.herokuapp.com/upload', {
+          method: 'POST',
+          body: form,
+      }); 
+      const uploadData = await uploadFetch.json();
+      setPictureURL(uploadData.url);
+  }
 
   return (
     <div>
@@ -154,7 +166,12 @@ export default function Register() {
               className="bg-light-orange  mt-4 shadow-md hover:bg-dark-orange rounded text-white font-bold"
               type="submit"
               onClick={() => {
-                dispatch(createUser({name,lastName,email, password},UserPicture));
+                console.log("photo: " + UserPicture);
+                if(UserPicture!=null){
+                  upload();
+                  console.log("url: " + pictureURL)
+                }
+                dispatch(createUser({name,lastName,email, password, pictureURL}));
               }}
             >
               <a href="/feed">Registrarse</a>
