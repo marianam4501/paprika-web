@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // import React, { useState, useRef, useId, useEffect } from "react";
 import Header from "../../Components/Headers/Header";
 import Footer from "../../Components/Footer/Index";
-import RecepiesBlock from "../../Components/RecepiesBlock/index";
+import RecepiesBlock from "../../Components/RecepiesBlock/PostsList";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../Slices/User/userSlice";
 import Spinner from "../../Components/Loading/index";
@@ -22,7 +22,6 @@ export function Profile() {
 
   useEffect(() => {
     const profileFetch = async () => {
-      console.log(id);
       const fetchProfile = await fetch(
         `https://paprika-api.herokuapp.com/users/${id}`
       );
@@ -36,9 +35,6 @@ export function Profile() {
     };
     profileFetch();
   }, [id]);
-
-  console.log("ID: " + id);
-  console.log(profile);
 
   return profile ? (
     <div>
@@ -90,18 +86,13 @@ export function Profile() {
                 type="submit"
                 className="inline-flex justify-center py-2 px-8 border border-transparent 
               shadow-sm text-sm font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
-                onClick={() => {
-                  dispatch(logout());
-                }}
               >
                 Guardado
               </button>
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-9 mb-5">
-            <RecepiesBlock />
-            <RecepiesBlock />
-          </div>
+          <RecepiesBlock recipes={profile.recipes}  />
+         
         </div>
       </main>
       <div className="relative inset-x-0 bottom-0 z-40">
