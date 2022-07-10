@@ -3,9 +3,9 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
 
 const navigation = [
-  { name: "Home", href: "/", current: false },
-  { name: "Register", href: "/register", current: false },
-  { name: "Login", href: "/login", current: false },
+  { name: "Inicio", href: "/", current: false },
+  { name: "Registrarse", href: "/register", current: false },
+  { name: "Iniciar sesión", href: "/login", current: false },
 ];
 
 function classNames(...classes) {
@@ -25,12 +25,13 @@ export default function SimpleHeader() {
                   <div className="flex items-center">
                     {/* LOGO */}
                     <div className="flex-shrink-0">
-                      <Link to=""></Link>
+                      <Link to="/">
                       <img
                         className="object-cover relative h-14 w-22"
                         src="https://rb.gy/iq70yv"
                         alt="Logo Paprika"
                       />
+                      </Link>
                     </div>
                     {/* Selection menu */}
                     <div className="hidden md:block">

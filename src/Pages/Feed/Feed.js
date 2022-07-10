@@ -2,6 +2,7 @@ import Header from "../../Components/Header/index.js";
 import Footer from "../../Components/Footer/Index.js";
 import PostsList from "../../Components/FeedPosts/PostsList";
 import { useEffect, useState } from "react";
+
 // import Spinner from "../../Components/Loading/index";
 
 

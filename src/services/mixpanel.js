@@ -1,5 +1,6 @@
-import mixpanel, { people } from "mixpanel-browser";
-import { types } from "util";
+// import mixpanel, { people } from "mixpanel-browser";
+// import { types } from "util";
+import mixpanel from "mixpanel-browser";
 
 mixpanel.init(process.env.REACT_APP_MIXPANEL_TOKEN);
 
@@ -19,6 +20,7 @@ const Mixpanel = {
         }
     },
     TYPES:{
+        TRY_LOGIN: "TRY_LOGIN",
         GO_TO_LOGIN: "GO_TO_LOGIN",
         CREATE_ACOUNT: "CREATE_ACCOUNT",
         VIEW_RECIPE: "VIEW_RECIPE",

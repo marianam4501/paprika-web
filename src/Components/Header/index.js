@@ -1,5 +1,11 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { logout } from "../../Slices/User/userSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+
 import {
   BellIcon,
   MenuIcon,
@@ -10,18 +16,18 @@ import {
 const user = {
   name: "The_legend_47",
   email: "tom@example.com",
-  imageUrl:
-    "https://i.ibb.co/f0fyGZv/taco.png",
+  imageUrl: "https://i.ibb.co/f0fyGZv/taco.png",
 };
 
 const navigation = [
-  { name: "Home", href: "#", current: false },
-  { name: "Stuff", href: "#", current: false },
+  { name: "Inicio", href: "/Feed", current: false },
+  { name: "Agregar Receta", href: "/Add_recipe", current: false },
 ];
+
 const userNavigation = [
   { name: "Your Profile", href: "/Profile" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+  { name: "Settings", href: "/" },
+  { name: "Cerrar sesión", href: "/" },
 ];
 
 function classNames(...classes) {
@@ -29,10 +35,21 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const dispatch = useDispatch();
+  const navigationB = useNavigate();
+  function logOut(item) {
+    if (item.name === "Cerrar sesión") {
+      dispatch(logout());
+      console.log("sali putos");
+      navigationB("/");
+
+    } else {
+
+      navigationB(item.href); 
+    }
+  }
   return (
     <>
-      
-
       <div className="min-h-full">
         <Disclosure as="nav" className="bg-black">
           {({ open }) => (
@@ -42,11 +59,14 @@ export default function Header() {
                   <div className="flex items-center">
                     {/* Paprika logo */}
                     <div className="flex-shrink-0">
+                      
+                    <Link to="/Feed">
                       <img
                         className="object-cover relative h-14 w-22"
                         src="https://rb.gy/iq70yv"
                         alt="Logo Paprika"
                       />
+                      </Link>
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
@@ -77,7 +97,6 @@ export default function Header() {
                         <span className="sr-only">View notifications</span>
                         <BellIcon className="h-6 w-6" aria-hidden="true" />
                       </button>
-                      
 
                       {/* Profile dropdown */}
                       <Menu as="div" className="ml-3 relative">
@@ -88,9 +107,7 @@ export default function Header() {
                               type="button"
                               className="bg-black p-1 rounded-full text-white hover:text-dark-orange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-orange focus:ring-black"
                             >
-                              <span className="sr-only">
-                                View user menu
-                              </span>
+                              <span className="sr-only">View user menu</span>
                               <UserCircleIcon
                                 className="h-6 w-6"
                                 aria-hidden="true"
@@ -195,8 +212,11 @@ export default function Header() {
                       <Disclosure.Button
                         key={item.name}
                         as="a"
-                        href={item.href}
+                        // href={item.href}
                         className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-dark-orange"
+                        onClick={() => {
+                          logOut(item);
+                        }}
                       >
                         {item.name}
                       </Disclosure.Button>
@@ -207,7 +227,6 @@ export default function Header() {
             </>
           )}
         </Disclosure>
-
       </div>
     </>
   );
