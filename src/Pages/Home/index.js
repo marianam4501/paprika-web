@@ -6,9 +6,15 @@ import Mixpanel from "../../services/mixpanel";
 import { logout } from "../../Slices/User/userSlice";
 import { useDispatch } from "react-redux";
 
+
+
+
+
 export function Home() {
   const dispatch = useDispatch();
+
  
+  
   return (
     <div className="p-0">
       <div className="pb-0">
@@ -117,5 +123,6 @@ export function Home() {
           <Footer />
         </div>
     </div>
-  );
+  ); 
+  
 }

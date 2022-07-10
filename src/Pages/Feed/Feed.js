@@ -2,9 +2,7 @@ import Header from "../../Components/Header/index.js";
 import Footer from "../../Components/Footer/Index.js";
 import PostsList from "../../Components/FeedPosts/PostsList";
 import { useEffect, useState } from "react";
-//import { getRecipe } from "../../Slices/Recipes/Requests/getRecipeById.js";
-//import { useDispatch } from "react-redux";
-// import { Navigate } from "react-router-dom";
+import Spinner from "../../Components/Loading/index";
 
 
 // const ID = uuidv4();
@@ -38,7 +36,7 @@ export default function Feed() {
         </div>
       </main>
     </>
-  ): <div>
-      Vacio
-    </div> ;
+  ) : (
+    <Spinner/>
+  );
 }

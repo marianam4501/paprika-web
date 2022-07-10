@@ -6,11 +6,17 @@ import Register from "../Register";
 import {Profile} from "../Profile";
 import ViewRecipe from "../Recipe/ViewRecipe";
 import Feed from "../Feed/Feed";
+import { useSelector } from "react-redux";
+import Spinner from "../../Components/Loading/index";
 
 export default function App() {
   //const user = useSelector(selectUser);
-    
-  return (
+  const loading = useSelector(
+    (state) => state.app.loading
+  );
+  return loading ? (
+    <Spinner/>
+  ) : (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="login" element={ <Login />} />

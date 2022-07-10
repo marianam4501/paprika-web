@@ -5,20 +5,24 @@ import Footer from "../../Components/Footer/Index";
 import RecepiesBlock from "../../Components/RecepiesBlock/index";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../Slices/User/userSlice";
+import Spinner from "../../Components/Loading/index";
 
 export function Profile() {
   const [profile, setProfile] = useState(null);
 
-  const id = useSelector(
-    (state) => state.user.user.id
-  );
+  const id = useSelector((state) => state.user.user.id);
+
   
+
   const dispatch = useDispatch();
 
-  useEffect (() => {
-    const profileFetch = async() => {
-      const fetchProfile = await fetch (`https://paprika-api.herokuapp.com/users/${id}`);
-      
+  useEffect(() => {
+    const profileFetch = async () => {
+      console.log(id)
+      const fetchProfile = await fetch(
+        `https://paprika-api.herokuapp.com/users/${id}`
+      );
+
       const profileJSON = await fetchProfile.json();
       if (fetchProfile.status === 200) {
         setProfile(profileJSON);
@@ -27,35 +31,36 @@ export function Profile() {
       }
     };
     profileFetch();
-  },[]);
+  }, []);
 
-  const loading = useSelector(
-    (state) => state.app.loading
-  );
-
+  console.log("ID: " + id)
+  
 
   return profile ? (
-    
     <div>
       <Header />
       <main className="static h-full mt-10 mb-20 mx-5 justify-center gap-y-5">
-        <div className="h-6 w-full grid justify-items-stretch">
-          <img
-            className="h-6 w-6 justify-self-end"
-            src="https://i.ibb.co/DLsKCmP/setting.png"
-            alt="userPic"
-          />
-        </div>
         <div className="grid mt-1 mb-10 columns-1 justify-center gap-y-5">
-          <span className="inline-block h-40 w-40 rounded-full overflow-hidden bg-gray-500 justify-self-center">
-            <svg
-              className="h-full w-full text-gray-300"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-          </span>
+        {profile.image && (
+            <img
+              className="rounded-full h-60 w-60"
+              src={profile.image} //profile image
+              alt="userPic"
+            />
+          )}
+          {/* <div className="h-6 w-full grid justify-items-stretch"></div> */}
+          {!profile.image && (
+            <span className="inline-block h-40 w-40 rounded-full overflow-hidden bg-gray-500 justify-self-center">
+              <svg
+                className="h-full w-full text-gray-300"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </span>
+          )}
+
           <label className="block text-lg font-normal text-black justify-self-center">
             {profile.user.name} {profile.user.lastname}
           </label>
@@ -82,10 +87,9 @@ export function Profile() {
                 className="inline-flex justify-center py-2 px-11 border border-transparent 
               shadow-sm text-sm font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
                 onClick={() => {
-                dispatch(logout());
+                  dispatch(logout());
                 }}
               >
-            
                 Saved
               </button>
             </div>
@@ -100,7 +104,7 @@ export function Profile() {
         <Footer />
       </div>
     </div>
-  ): <div>
-      Vacio
-  </div> ;
+  ) : (
+    <Spinner/>
+  );
 }
