@@ -6,6 +6,8 @@ import Register from "../Register";
 import {Profile} from "../Profile";
 import ViewRecipe from "../Recipe/ViewRecipe";
 import Feed from "../Feed/Feed";
+import PrivateRoute from "../../Components/PrivateRoute";
+import { ROLES } from "../../Utils/constants";
 // import { useSelector } from "react-redux";
 // import Spinner from "../../Components/Loading/index";
 
@@ -19,10 +21,12 @@ export default function App() {
       <Route path="/" element={<Home />} />
       <Route path="login" element={ <Login />} />
       <Route path="register" element={ <Register />} />
-      <Route path="recipe" element = { <ViewRecipe/>}/>
-      <Route path="Feed" element = { <Feed/>}/>
-      <Route path="Add_recipe" element={ <AddRecipe />} />
-      <Route path="Profile" element={ <Profile />} />
+      <Route element={<PrivateRoute allowedRoles={[ROLES.CLIENT]}/>}>
+        <Route path="Add_recipe" element={ <AddRecipe />} />
+        <Route path="Profile" element={ <Profile />} />
+        <Route path="recipe" element = { <ViewRecipe/>}/>
+        <Route path="Feed" element = { <Feed/>}/>
+      </Route>
     </Routes>
   ) ; 
   

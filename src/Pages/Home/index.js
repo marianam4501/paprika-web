@@ -3,18 +3,8 @@ import React from "react";
 import SimpleHeader from "../../Components/SimpleHeader/Index";
 import Footer from "../../Components/Footer/Index";
 import Mixpanel from "../../services/mixpanel";
-import { logout } from "../../Slices/User/userSlice";
-import { useDispatch } from "react-redux";
-
-
-
-
 
 export function Home() {
-  const dispatch = useDispatch();
-
- 
-  
   return (
     <div className="p-0">
       <div className="pb-0">
@@ -46,10 +36,6 @@ export function Home() {
             <button
               className="bg-light-orange hover:bg-dark-orange text-black 
             hover:text-white font-semibold  mx-4 h-10 w-auto px-11 rounded"
-            onClick={() => {
-              Mixpanel.track(Mixpanel.TYPES.GO_TO_LOGIN);
-                dispatch(logout());
-            }}
             >
              <a href="/login">Login</a>
             </button>

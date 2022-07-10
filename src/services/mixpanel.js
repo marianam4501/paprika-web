@@ -22,6 +22,7 @@ const Mixpanel = {
         GO_TO_LOGIN: "GO_TO_LOGIN",
         CREATE_ACOUNT: "CREATE_ACCOUNT",
         VIEW_RECIPE: "VIEW_RECIPE",
+        TRY_LOGIN:  "TRY_LOGIN"
     }  
 
 };
