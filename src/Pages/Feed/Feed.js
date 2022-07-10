@@ -1,9 +1,8 @@
 import Header from "../../Components/Headers/Header";
 import Footer from "../../Components/Footer/Index.js";
 import PostsList from "../../Components/FeedPosts/PostsList";
-import { useEffect, useState } from "react";
 import Spinner from "../../Components/Loading/index";
-
+import { useEffect, useState } from "react";
 
 // const ID = uuidv4();
 export default function Feed() {

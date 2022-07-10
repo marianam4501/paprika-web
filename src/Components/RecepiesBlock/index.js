@@ -6,7 +6,7 @@ export default function RecepiesBlock() {
             <div className="mb-2 w-auto">
               <img
                 className="object-cover relative h-32 w-32 rounded-lg"
-                alt="test"
+                alt="recipe"
                 src="https://i.ibb.co/B2Sv2HQ/f-5.jpg"
               /> 
             </div>

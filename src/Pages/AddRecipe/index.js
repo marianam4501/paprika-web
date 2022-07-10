@@ -1,4 +1,4 @@
-import React, { useState  } from "react";
+import React, { useState } from "react";
 import Header from "../../Components/Headers/Header";
 import Footer from "../../Components/Footer/Index";
 import IngredientList from "../../Components/IngredientList/Index";
@@ -9,21 +9,17 @@ import { v4 as uuidv4 } from "uuid";
 import { PlusIcon } from "@heroicons/react/outline";
 import { createRecipe } from "../../Slices/Recipes/Requests/createRecipe";
 
-
-
-
 export function AddRecipe() {
-  const loggedUserId = useSelector(
-    (state) => state.user.user.id
-  );
-
+  const loggedUserId = useSelector((state) => state.user.user.id);
 
   const [ingredients, setIngredients] = useState([]);
   const [recipePicture, setRecepiPicture] = useState(null);
+  const [pictureURL, setPictureURL] = useState(null);
   const [recipe, setRecipe] = useState({
     userId: loggedUserId,
     name: "",
     steps: " ",
+    image: "https://ci0137.s3.amazonaws.com/paprika/default_recipe.png"
   });
 
   const [recipeIngreidentList, setRecipeIngreidentList] = useState([]);
@@ -37,6 +33,17 @@ export function AddRecipe() {
     });
   };
 
+  const upload = async () => {
+    const form = new FormData();
+    form.append('file', recipePicture);
+      const uploadFetch = await fetch('https://paprika-api.herokuapp.com/upload', {
+          method: 'POST',
+          body: form,
+      }); 
+      const uploadData = await uploadFetch.json();
+      setPictureURL(uploadData.url);
+  }
+
   function handleAddIngredient(e) {
     setIngredients((prevIngredients) => {
       return [...prevIngredients, { id: uuidv4() }]; // use id?
@@ -45,15 +52,11 @@ export function AddRecipe() {
 
   function handleInsertUpdate(ingredient) {
     handleDeleteIngredientData(ingredient.id);
-    
-    setRecipeIngreidentList((prevIngredients) => {
-      return [...prevIngredients,  ingredient ]; // use id?
-    });
-    //   setRecipeIngreidentList(previousState => ({
-    //     recipeIngreidentList: {...previousState, ingredient}
-    // }));
-  }
 
+    setRecipeIngreidentList((prevIngredients) => {
+      return [...prevIngredients, ingredient]; // use id?
+    });
+  }
 
   function handleDeleteIngredientData(id) {
     const newIngredients = recipeIngreidentList.filter(
@@ -179,12 +182,15 @@ export function AddRecipe() {
             type="submit"
             className="inline-flex justify-center mt-10 px-4 py-3 w-full border border-transparent shadow-sm text-lg font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
             onClick={() => {
-              console.log(recipePicture);
+              if(recipePicture!=null){
+                upload();
+                handleChange("image", pictureURL);
+              }
               const _recipe =  {...recipe,recipeIngreidentList};
-              dispatch(createRecipe({_recipe, recipePicture}));
+              dispatch(createRecipe(_recipe));
             }}
-          > Post your recipe! 🍜
-            {/* <a href="Add_recipe"></a> */}
+          >
+            <a href="/Feed">🥧 Publica tu receta 🍕</a>
           </button>
         </div>
       </main>
