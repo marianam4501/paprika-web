@@ -1,15 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const createRecipe = createAsyncThunk('Recipes/createRecipe', async ( recipe, photo ) => {
-    // const form = new FormData();
-    // form.append('file', photo);
-    // const uploadFetch = await fetch('https://paprika-api.herokuapp.com/upload', {
-    //     method: 'POST',
-    //     body: form,
-    // });
-    // const uploadData = await uploadFetch.json();
-    // recipe.foto = uploadData.url;
-    // console.log(recipe);
+export const createRecipe = createAsyncThunk('Recipes/createRecipe', async (recipe) => {
+   
     const itemFetch = await fetch('https://paprika-api.herokuapp.com/recipes', {
         
         method: 'POST',
@@ -21,7 +13,7 @@ export const createRecipe = createAsyncThunk('Recipes/createRecipe', async ( rec
             name : recipe.name,
             ingredients : recipe.recipeIngreidentList,
             steps: recipe.steps,
-            image: "https://ci0137.s3.amazonaws.com/paprika/default_recipe.png"
+            image: recipe.image
         }),
     });
     const itemData = await itemFetch.json();

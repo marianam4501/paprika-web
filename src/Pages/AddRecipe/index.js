@@ -20,11 +20,24 @@ export function AddRecipe() {
 
   const [ingredients, setIngredients] = useState([]);
   const [recipePicture, setRecepiPicture] = useState(null);
+  const [pictureURL, setPictureURL] = useState(null);
   const [recipe, setRecipe] = useState({
     userId: loggedUserId,
     name: "",
     steps: " ",
+    image: "https://ci0137.s3.amazonaws.com/paprika/default_recipe.png"
   });
+
+  const upload = async () => {
+    const form = new FormData();
+    form.append('file', recipePicture);
+      const uploadFetch = await fetch('https://paprika-api.herokuapp.com/upload', {
+          method: 'POST',
+          body: form,
+      }); 
+      const uploadData = await uploadFetch.json();
+      setPictureURL(uploadData.url);
+  }
 
   const [recipeIngreidentList, setRecipeIngreidentList] = useState([]);
 
@@ -77,10 +90,10 @@ export function AddRecipe() {
       <main className="h-full w-full mb-20 justify-center gap-y-5">
         <div className="mx-5 gap-y-5">
           <h2 className="py-5 tracking-wide text-center text-3xl font-semibold text-black">
-            🥧 Add a recipe 🍕
+            🥧 Publica tu receta 🍕
           </h2>
           {/*Form*/}
-          <h6 className="text-lg text-black">Name of the recipe:</h6>
+          <h6 className="text-lg text-black">Nombre de la receta:</h6>
           <input
             value={recipe.name}
             onChange={(evt) => {
@@ -93,7 +106,7 @@ export function AddRecipe() {
             placeholder="best recipe ever"
           ></input>
           {/* IMAGE INPUT */}
-          <label className="block text-lg  text-black">Meal Picture:</label>
+          <label className="block text-lg  text-black">Foto:</label>
 
           <div className="content-center mt-1 flex justify-center px-6 pt-5 pb-6 border-2 h-auto border-gray-300 border-dashed rounded-md">
             {!recipePicture && (
@@ -144,7 +157,7 @@ export function AddRecipe() {
           </div>
 
           {/*  INGREDIENTS */}
-          <label className="block text-lg  text-black">Ingredients:</label>
+          <label className="block text-lg  text-black">Ingredientes:</label>
 
           <IngredientList
             ingredients={ingredients}
@@ -172,7 +185,7 @@ export function AddRecipe() {
             border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-light-orange focus:outline-none"
             id="exampleFormControlTextarea1"
             rows="3"
-            placeholder="Steps to make the recipe"
+            placeholder="Pasos para realizar la receta"
           ></textarea>
 
           <button
@@ -180,11 +193,15 @@ export function AddRecipe() {
             className="inline-flex justify-center mt-10 px-4 py-3 w-full border border-transparent shadow-sm text-lg font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
             onClick={() => {
               console.log(recipePicture);
+              if(recipePicture!=null){
+                upload();
+                console.log(pictureURL);
+              }
               const _recipe =  {...recipe,recipeIngreidentList};
-              dispatch(createRecipe({_recipe, recipePicture}));
+              dispatch(createRecipe(_recipe));
             }}
-          > Post your recipe! 🍜
-            {/* <a href="Add_recipe"></a> */}
+          > Publicar receta! 🍜
+            <a href="/Feed">Publicar receta! 🍜</a>
           </button>
         </div>
       </main>
