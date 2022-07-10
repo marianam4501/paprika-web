@@ -12,7 +12,7 @@ export const createRecipe = createAsyncThunk('Recipes/createRecipe', async ( rec
             name : recipe.name,
             ingredients : recipe.recipeIngreidentList,
             steps: recipe.steps,
-            image: recipe.image
+            image: "https://ci0137.s3.amazonaws.com/paprika/default_recipe.png"//recipe.image
         }),
     });
     const itemData = await itemFetch.json();

@@ -11,7 +11,7 @@ export const createUser = createAsyncThunk('users/createUser', async (user) => {
             lastname: user.lastname,
             email: user.email,
             password: user.password, 
-            profile_picture: user.pictureURL
+            profile_picture: "https://ci0137.s3.amazonaws.com/paprika/defaultUser.png"//user.pictureURL
         }),
     });
     const userData = await createUserFetch.json();
