@@ -1,5 +1,11 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { logout } from "../../Slices/User/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+
 import {
   BellIcon,
   MenuIcon,
@@ -7,21 +13,15 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/outline";
 
-const user = {
-  name: "The_legend_47",
-  email: "tom@example.com",
-  imageUrl:
-    "https://i.ibb.co/f0fyGZv/taco.png",
-};
-
 const navigation = [
-  { name: "Home", href: "#", current: false },
-  { name: "Stuff", href: "#", current: false },
+  { name: "Inicio", href: "/Feed", current: false },
+  { name: "Agregar Receta", href: "/Add_recipe", current: false },
 ];
+
 const userNavigation = [
-  { name: "Your Profile", href: "/Profile" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+  { name: "Mi perfil", href: "/Profile" },
+  { name: "Configuración", href: "/" },
+  { name: "Cerrar sesión", href: "/" },
 ];
 
 function classNames(...classes) {
@@ -29,10 +29,21 @@ function classNames(...classes) {
 }
 
 export default function Header() {
+  const user  =  useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  const navigationB = useNavigate();
+  function logOut(item) {
+    if (item.name === "Cerrar sesión") {
+      dispatch(logout());
+      navigationB("/");
+
+    } else {
+
+      navigationB(item.href); 
+    }
+  }
   return (
     <>
-      
-
       <div className="min-h-full">
         <Disclosure as="nav" className="bg-black">
           {({ open }) => (
@@ -42,11 +53,14 @@ export default function Header() {
                   <div className="flex items-center">
                     {/* Paprika logo */}
                     <div className="flex-shrink-0">
+                      
+                    <Link to="/Feed">
                       <img
                         className="object-cover relative h-14 w-22"
                         src="https://rb.gy/iq70yv"
                         alt="Logo Paprika"
                       />
+                      </Link>
                     </div>
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
@@ -77,25 +91,19 @@ export default function Header() {
                         <span className="sr-only">View notifications</span>
                         <BellIcon className="h-6 w-6" aria-hidden="true" />
                       </button>
-                      
 
                       {/* Profile dropdown */}
                       <Menu as="div" className="ml-3 relative">
                         <div>
                           <Menu.Button className="max-w-xs bg-black rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-white">
                             <span className="sr-only">Open user menu</span>
-                            <button
-                              type="button"
-                              className="bg-black p-1 rounded-full text-white hover:text-dark-orange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-orange focus:ring-black"
-                            >
-                              <span className="sr-only">
-                                View user menu
-                              </span>
+                            
+                              <span className="sr-only">View user menu</span>
                               <UserCircleIcon
                                 className="h-6 w-6"
                                 aria-hidden="true"
                               />
-                            </button>
+                            
                           </Menu.Button>
                         </div>
                         <Transition
@@ -169,8 +177,8 @@ export default function Header() {
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
                       <img
-                        className="h-10 w-10 rounded-full"
-                        src={user.imageUrl}
+                        className="h-10 w-10 object-cover relative rounded-full"
+                        src={user.profile_picture}
                         alt=""
                       />
                     </div>
@@ -182,21 +190,18 @@ export default function Header() {
                         {user.email}
                       </div>
                     </div>
-                    <button
-                      type="button"
-                      className="ml-auto bg-black flex-shrink-0 p-1 rounded-full text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-dark-orange"
-                    >
-                      <span className="sr-only">View notifications</span>
-                      <BellIcon className="h-6 w-6" aria-hidden="true" />
-                    </button>
+                    
                   </div>
                   <div className="mt-3 px-2 space-y-1">
                     {userNavigation.map((item) => (
                       <Disclosure.Button
                         key={item.name}
                         as="a"
-                        href={item.href}
+                        // href={item.href}
                         className="block px-3 py-2 rounded-md text-base font-medium text-white hover:text-white hover:bg-dark-orange"
+                        onClick={() => {
+                          logOut(item);
+                        }}
                       >
                         {item.name}
                       </Disclosure.Button>
@@ -207,7 +212,6 @@ export default function Header() {
             </>
           )}
         </Disclosure>
-
       </div>
     </>
   );

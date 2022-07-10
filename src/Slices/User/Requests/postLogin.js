@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import Mixpanel from "../../../services/mixpanel";
 
-
 export const postLogin = createAsyncThunk('users/postLogin', async (credentials) => {
     const loginFetch = await fetch(`https://paprika-api.herokuapp.com/users/login`, {
         method: 'POST',

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { recipeReducers } from "./Reducers";
+import { recipeReducers } from "./Reducers/index";
 import { createRecipe, onCreateRecipeFullfiled, onCreateRecipeRejected } from "./Requests/createRecipe";
 import { getFeed, onGetFeedFullfiled, onGetFeedRejected } from "./Requests/getFeed";
 import { getRecipe, onGetRecipeFullfiled, onGetRecipeRejected } from "./Requests/getRecipeById";

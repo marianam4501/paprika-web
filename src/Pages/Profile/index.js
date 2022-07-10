@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 // import React, { useState, useRef, useId, useEffect } from "react";
-import Header from "../../Components/Header";
+import Header from "../../Components/Headers/Header";
 import Footer from "../../Components/Footer/Index";
 import RecepiesBlock from "../../Components/RecepiesBlock/index";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,12 @@ import { logout } from "../../Slices/User/userSlice";
 import Spinner from "../../Components/Loading/index";
 
 export function Profile() {
+  function randomNumberInRange(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  const follows = randomNumberInRange(130, 233)
+  const followers = randomNumberInRange(99, 563)
+
   const [profile, setProfile] = useState(null);
 
   const id = useSelector((state) => state.user.user.id);
@@ -29,7 +35,7 @@ export function Profile() {
       }
     };
     profileFetch();
-  }, []);
+  }, [id]);
 
   console.log("ID: " + id);
   console.log(profile);
@@ -62,37 +68,37 @@ export function Profile() {
           <label className="block text-lg font-normal text-black justify-self-center">
             {profile.user.name} {profile.user.lastname}
           </label>
-          <div className="columns-2 justify-center mb-2">
+          <div className="grid grid-cols-2 gap-x-9 ">
             <div className="grid justify-center gap-y-2 mb-2">
               <label className="block text-xs font-normal text-black justify-self-center">
-                666 followers
+              {followers} seguidores
               </label>
               <button
                 type="submit"
-                className="inline-flex justify-se;f-center py-2 px-6 border border-transparent 
+                className="inline-flex justify-se;f-center py-2 px-7 border border-transparent 
               shadow-sm text-sm font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
               >
-                My recepies
+                Mis recetas
               </button>
             </div>
-            <div className="grid justify-center gap-y-2 mb-2">
+            <div className="grid justify-self-center justify-center gap-y-2 mb-2">
               <label className="block text-xs font-normal text-black justify-self-center">
-                69 follows
+              {follows} seguidos
               </label>
 
               <button
                 type="submit"
-                className="inline-flex justify-center py-2 px-11 border border-transparent 
+                className="inline-flex justify-center py-2 px-8 border border-transparent 
               shadow-sm text-sm font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
                 onClick={() => {
                   dispatch(logout());
                 }}
               >
-                Saved
+                Guardado
               </button>
             </div>
           </div>
-          <div className="columns-2 justify-center mb-2">
+          <div className="grid grid-cols-2 gap-9 mb-5">
             <RecepiesBlock />
             <RecepiesBlock />
           </div>

@@ -1,6 +1,6 @@
 //import { Link } from "react-router-dom";
 import React from "react";
-import SimpleHeader from "../../Components/SimpleHeader/Index";
+import SimpleHeader from "../../Components/Headers/SimpleHeader";
 import Footer from "../../Components/Footer/Index";
 import Mixpanel from "../../services/mixpanel";
 
@@ -12,37 +12,40 @@ export function Home() {
       </div>
 
       {/* Images background */}
-      
-      <main className="static h-full">
-        
+
+      <main className="static h-full my-5">
         <div className="h-full w-full pt-44 fixed space-y-20 z-30">
           <div className="bg-white h-56 w-full gap-0 grid justify-items-center">
-            <h1 className="text-lg font-semibold tracking-wide text-center pt-5 px-10">
-              Join our cooking comunity
+            <h1 className="text-base font-medium tracking-wide text-center pt-5 px-10 my-3">
+              Únete a nuestra comunidad de cocineros
             </h1>
+
             <button
-              className="bg-light-orange hover:bg-dark-orange text-black 
-            hover:text-white font-semibold  mx-4 h-10 w-auto px-5 rounded"
+              type="submit"
+              className=" justify-self-center py-2 px-8 h-10 w-auto border border-transparent 
+              shadow-sm text-base font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
               onClick={() => {
                 Mixpanel.track(Mixpanel.TYPES.CREATE_ACOUNT);
               }}
             >
-              <a href="register">Join Paprika</a>
-              
+              <a href="register">Únete a Paprika</a>
             </button>
             <h3 className="text-base font-medium tracking-wide text-center px-10">
-              or
+              o
             </h3>
             <button
-              className="bg-light-orange hover:bg-dark-orange text-black 
-            hover:text-white font-semibold  mx-4 h-10 w-auto px-11 rounded"
+              type="submit"
+              className="mb-14 justify-self-center py-2 px-10 h-10 w-auto border border-transparent 
+              shadow-sm text-base font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
+              onClick={() => {
+                Mixpanel.track(Mixpanel.TYPES.GO_TO_LOGIN);
+              }}
             >
-             <a href="/login">Login</a>
+              <a href="/login">Iniciar sesión</a>
             </button>
           </div>
         </div>
 
-        
         <div className="mx-5 columns-2 -z-0">
           <div className="px-1 flex flex-col space-y-5">
             {/*   IMG 1  */}
@@ -81,8 +84,8 @@ export function Home() {
               alt="test"
               src="https://bit.ly/3n9MbQp"
             />
-             {/*   IMG 7  */}
-             <img
+            {/*   IMG 7  */}
+            <img
               className="object-cover relative h-auto w-auto rounded-lg"
               alt="test"
               src="https://i.ibb.co/MNm723z/f-6.jpg"
@@ -101,14 +104,11 @@ export function Home() {
             />
           </div>
           {/*-----------------------------------------------------------------------------------*/}
-          
         </div>
-        
       </main>
       <div className="relative inset-x-0 bottom-0 z-40">
-          <Footer />
-        </div>
+        <Footer />
+      </div>
     </div>
-  ); 
-  
+  );
 }
