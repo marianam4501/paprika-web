@@ -39,7 +39,7 @@ export const onPostCreateUserFullfiled = (state, action) => {
         state.user = null;
         state.errorMessage = action.payload.message;
     } else {
-        state.userIsLoggedIn = true;
+        state.userIsLoggedIn = false;
         state.user = action.payload;
     }
 };
