@@ -1,12 +1,9 @@
 import Header from "../../Components/Headers/Header";
 import Footer from "../../Components/Footer/Index.js";
 import IngredientList from "../../Components/RecepiIngredients/IngredientList";
-import {  useState } from "react";
-import { useSelector } from "react-redux";
-
+import {  useEffect, useState } from "react";
 import { HeartIcon, ClockIcon, BookmarkIcon } from "@heroicons/react/solid";
-
-
+import { useParams } from "react-router-dom";
 
 export default function ViewRecipe() {
   const [likes, setLikes] = useState(100);
@@ -14,6 +11,22 @@ export default function ViewRecipe() {
   const time = 13;
   const [save, setSave] = useState("Save");
   const [isSaved, setIsSaved] = useState();
+  const [Recipe, setRecipe] = useState(null);
+
+  const recipeID = useParams();
+  
+  useEffect (() => {
+    const recipeFetch = async() => {
+      const fetchRecipe = await fetch (`https://paprika-api.herokuapp.com/recipes/${recipeID.id}`);
+      const recipeJSON = await fetchRecipe.json();
+      if (fetchRecipe.status === 200) {
+        setRecipe(recipeJSON)
+      } else {
+        console.log("Error al cargar receta");
+      }
+    };
+    recipeFetch();
+  },[recipeID]);
 
   function handleLike(){
     setLiked(!liked)
@@ -45,9 +58,6 @@ export default function ViewRecipe() {
     
   }
 
-  const Recipe = useSelector(
-    (state) => state.recipe
-  );
 
   return  Recipe ? (
     
@@ -57,13 +67,13 @@ export default function ViewRecipe() {
       </div>
       <main className="mx-10 pt-5 h-full justify-center content-center">
         <label className="py-5 text-center text-2xl font-normal text-black ">
-         {Recipe.recipe.name}
+         {Recipe.name}
         </label>
         <div className="justify-center items-center  my-5">
           <div className="flex flex-row">
             <div>
               <img
-                src={Recipe.recipe.image}
+                src={Recipe.image}
                 alt="fotography"
                 className="object-cover relative h-72 w-72 rounded-lg shadow-xl"
               />
@@ -119,7 +129,7 @@ export default function ViewRecipe() {
 
         <div className="shadow-xl  bg-black rounded-lg h-40 w-full my-5">
           <div className="mx-5 py-2">
-              <p className="text-white font-normal text-sm">{Recipe.recipe.steps}</p>
+              <p className="text-white font-normal text-sm">{Recipe.steps}</p>
           </div>
         </div>
         
@@ -128,7 +138,7 @@ export default function ViewRecipe() {
         </label>
 
         {/* INGREDIENTS */}
-        <IngredientList Recepi={Recipe.recipe} />
+        <IngredientList Recepi={Recipe} />
 
         
       </main>

@@ -42,7 +42,6 @@ export default function Header() {
   function logOut(item) {
     if (item.name === "Cerrar sesión") {
       dispatch(logout());
-      console.log("sali putos");
       navigationB("/");
 
     } else {
