@@ -9,6 +9,7 @@ const userSlice = createSlice({
         user: null,
         userIsLoggedIn: false,
         errorMessage: "",
+        success: false
     },
     reducers: userReducers,
     extraReducers(builder) {

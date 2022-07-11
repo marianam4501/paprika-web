@@ -4,15 +4,12 @@ import Footer from "../../Components/Footer/Index";
 import IngredientList from "../../Components/IngredientList/Index";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 import { v4 as uuidv4 } from "uuid";
-
 import { PlusIcon } from "@heroicons/react/outline";
 import { createRecipe } from "../../Slices/Recipes/Requests/createRecipe";
 
 export function AddRecipe() {
   const loggedUserId = useSelector((state) => state.user.user.id);
-
   const [ingredients, setIngredients] = useState([]);
   const [recipePicture, setRecepiPicture] = useState(null);
   const [recipe, setRecipe] = useState({
@@ -203,7 +200,6 @@ export function AddRecipe() {
             onClick={() => {
               if (recipePicture != null) {
                 setPictureOnUpload();
-                //handleChange("image", pictureURL);
               } else {
                 var value = "";
                 const _recipe = { ...recipe, value, recipeIngreidentList };

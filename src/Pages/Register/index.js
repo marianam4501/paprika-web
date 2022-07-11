@@ -1,41 +1,67 @@
 import Header from "../../Components/Headers/SimpleHeader";
 import Footer from "../../Components/Footer/Index";
-//mport { createUser } from "../../Slices/User/Requests/createUser";
- import { useState } from "react";
-// import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { createUser } from "../../Slices/User/Requests/createUser";
+import Spinner from "../../Components/Loading";
 
 export default function Register() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [lastName, setlastName] = useState("");
-  //const [pictureURL, setPictureURL] = useState("https://ci0137.s3.amazonaws.com/paprika/defaultUser.png");
-  const [UserPicture, setUserPicture] = useState(null);
-  //onst dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const navigationB = useNavigate();
+  const [userPicture, setUserPicture] = useState(false);
+  const [pictureState,setPictureState ]= useState(true);
+  const [user, setUser] = useState({
+    name : "",
+    lastname: "",
+    email:"",
+    password:""
+  });
+  
+  const onAfterUpload = (value) => {
+    const _user = { ...user, value };
+    dispatch(createUser(_user));
+    setPictureState(true);
+    navigationB("/login");
+  };
 
-  // const upload = async () => {
-  //   const form = new FormData();
-  //   form.append('file', UserPicture);
-  //     const uploadFetch = await fetch('https://paprika-api.herokuapp.com/upload', {
-  //         method: 'POST',
-  //         body: form,
-  //     }); 
-  //     const uploadData = await uploadFetch.json();
-  //     setPictureURL(uploadData.url);
-  // }
+  function setPictureOnUpload() {
+    async function upload() {
+      const form = new FormData();
+      form.append("file", userPicture);
+      const uploadFetch = await fetch(
+        "https://paprika-api.herokuapp.com/upload",
+        {
+          method: "POST",
+          body: form,
+        }
+      );
+      const uploadData = await uploadFetch.json();
+      return uploadData;
+    }
 
-  return (
+    upload().then((uploadData) => {
+      onAfterUpload(uploadData.url);
+    });
+  }
+
+  const handleChange = (key, value) => {
+    setUser({
+      ...user,
+      [key]: value,
+    });
+  };
+  return pictureState? (
     <div>
       <div className="mb-5">
         <Header />
       </div>
-
       <div className="w-auto h-auto flex flex-wrap justify-center mb-32">
         <div>
           <h1 className="text-3xl font-bold my-5">🍺 Registrarse 🌶</h1>
           <form>
             <div className="content-center mt-1 flex justify-center border-2 h-60 w-60 border-gray-300 border-dashed rounded-full">
-              {!UserPicture && (
+              {!userPicture && (
                 <div className=" space-y-1 text-center justify-center mt-5">
                   <div className="columns-1 justify-center  text-sm text-gray-600">
                     <img
@@ -48,7 +74,7 @@ export default function Register() {
                       className="relative cursor-pointer bg-white rounded-md font-medium text-dark-orange hover:text-light-orange focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-light-orange"
                     >
                       <input
-                        id="recepiPicture"
+                        id="userPicture"
                         onChange={(evt) => {
                           setUserPicture(evt.target.files[0]);
                         }}
@@ -61,17 +87,17 @@ export default function Register() {
                 </div>
               )}
 
-              {UserPicture && (
+              {userPicture && (
                 <div>
                   <img
-                    src={URL.createObjectURL(UserPicture)}
+                    src={URL.createObjectURL(userPicture)}
                     alt="New_user_image"
                     className="rounded-full h-full w-full"
                   />
                 </div>
               )}
             </div>
-            {UserPicture && (
+            {userPicture && (
             <button
                     onClick={() => {
                       setUserPicture(null);
@@ -91,9 +117,9 @@ export default function Register() {
                   placeholder="Escriba su nombre"
                   type="text"
                   name="name"
-                  value={name}
+                  value={user.name}
                   onChange={(evt) => {
-                    setName(evt.target.value);
+                    handleChange("name", evt.target.value);
                   }}
                 />
               </label>
@@ -107,9 +133,9 @@ export default function Register() {
                   placeholder="Escriba su apellido"
                   type="text"
                   name="lastname"
-                  value={lastName}
+                  value={user.lastname}
                   onChange={(evt) => {
-                    setlastName(evt.target.value);
+                    handleChange("lastname", evt.target.value);
                   }}
                 />
               </label>
@@ -124,9 +150,9 @@ export default function Register() {
                   type="email"
                   name="email"
                   required
-                  value={email}
+                  value={user.email}
                   onChange={(evt) => {
-                    setEmail(evt.target.value);
+                    handleChange("email", evt.target.value);
                   }}
                 />
               </label>
@@ -141,9 +167,9 @@ export default function Register() {
                   type="password"
                   name="password"
                   required
-                  value={password}
+                  value={user.password}
                   onChange={(evt) => {
-                    setPassword(evt.target.value);
+                    handleChange("password", evt.target.value);
                   }}
                 />
               </label>
@@ -166,15 +192,17 @@ export default function Register() {
               className="bg-light-orange  mt-4 shadow-md hover:bg-dark-orange rounded text-white font-bold"
               type="submit"
               onClick={() => {
-                console.log("photo: " + UserPicture);
-                if(UserPicture!=null){
-                  //upload();
-                  
+                setPictureState(false);
+                if (userPicture != null) {
+                  setPictureOnUpload();
+                } else {
+                  var value = "https://ci0137.s3.amazonaws.com/paprika/defaultUser.png";
+                  const _user = { ...user, value};
+                  dispatch(createUser(_user));
                 }
-                //dispatch(createUser({name,lastName,email, password, pictureURL}));
               }}
             >
-              <a href="/Feed">Registrarse</a>
+              Registrarse
             </button>
             </div>
           </form>
@@ -184,5 +212,5 @@ export default function Register() {
         <Footer />
       </div>
     </div>
-  );
+  ):(<Spinner/>);
 }
