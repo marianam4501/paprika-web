@@ -4,7 +4,6 @@ import Header from "../../Components/Headers/Header";
 import Footer from "../../Components/Footer/Index";
 import RecepiesBlock from "../../Components/RecepiesBlock/PostsList";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../Slices/User/userSlice";
 import Spinner from "../../Components/Loading/index";
 
 export function Profile() {
@@ -17,8 +16,6 @@ export function Profile() {
   const [profile, setProfile] = useState(null);
 
   const id = useSelector((state) => state.user.user.id);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     const profileFetch = async () => {
