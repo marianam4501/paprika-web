@@ -119,15 +119,18 @@ export default function Header() {
                             {userNavigation.map((item) => (
                               <Menu.Item key={item.name}>
                                 {({ active }) => (
-                                  <a
+                                  <label
                                     href={item.href}
+                                    onClick={() => {
+                                      logOut(item);
+                                    }}
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-black"
                                     )}
                                   >
                                     {item.name}
-                                  </a>
+                                  </label>
                                 )}
                               </Menu.Item>
                             ))}
@@ -142,7 +145,7 @@ export default function Header() {
                     <Disclosure.Button className="bg-black inline-flex items-center justify-center p-2 rounded-md text-white hover:text-black hover:bg-light-orange focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-white">
                       <span className="sr-only">Open main menu</span>
                       {open ? (
-                        <XIcon className="block h-6 w-6" aria-hidden="true" />
+                        <XIcon className="block h-6 w-6" aria-hidden="true"  />
                       ) : (
                         <MenuIcon
                           className="block h-6 w-6"
@@ -168,6 +171,9 @@ export default function Header() {
                         "block px-3 py-2 rounded-md text-base font-medium"
                       )}
                       aria-current={item.current ? "page" : undefined}
+                      onClick={() => {
+                        logOut(item);
+                      }}
                     >
                       {item.name}
                     </Disclosure.Button>

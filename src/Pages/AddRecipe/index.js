@@ -3,6 +3,7 @@ import Header from "../../Components/Headers/Header";
 import Footer from "../../Components/Footer/Index";
 import IngredientList from "../../Components/IngredientList/Index";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -23,10 +24,13 @@ export function AddRecipe() {
   const [recipeIngreidentList, setRecipeIngreidentList] = useState([]);
 
   const dispatch = useDispatch();
+  const navigationB = useNavigate();
 
   const onAfterUpload = (value) => {
     const _recipe = { ...recipe, value, recipeIngreidentList };
+
     dispatch(createRecipe(_recipe));
+    navigationB("/Feed");
   };
 
   function setPictureOnUpload() {
@@ -93,10 +97,10 @@ export function AddRecipe() {
       <main className="h-full w-full mb-20 justify-center gap-y-5">
         <div className="mx-5 gap-y-5">
           <h2 className="py-5 tracking-wide text-center text-3xl font-semibold text-black">
-            🥧 Add a recipe 🍕
+            🥧 Agregar receta 🍕
           </h2>
           {/*Form*/}
-          <h6 className="text-lg text-black">Name of the recipe:</h6>
+          <h6 className="text-lg text-black">Nombre de la receta:</h6>
           <input
             value={recipe.name}
             onChange={(evt) => {
@@ -109,7 +113,9 @@ export function AddRecipe() {
             placeholder="best recipe ever"
           ></input>
           {/* IMAGE INPUT */}
-          <label className="block text-lg  text-black">Meal Picture:</label>
+          <label className="block text-lg  text-black">
+            Foto de la receta:
+          </label>
 
           <div className="content-center mt-1 flex justify-center px-6 pt-5 pb-6 border-2 h-auto border-gray-300 border-dashed rounded-md">
             {!recipePicture && (
@@ -121,7 +127,7 @@ export function AddRecipe() {
                     alt="Logo Paprika"
                   />
                   <label
-                    htmlFor="file-upload"
+                    htmlFor="subir archivo"
                     className="relative cursor-pointer bg-white rounded-md font-medium text-dark-orange hover:text-light-orange focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-light-orange"
                   >
                     <input
@@ -160,7 +166,7 @@ export function AddRecipe() {
           </div>
 
           {/*  INGREDIENTS */}
-          <label className="block text-lg  text-black">Ingredients:</label>
+          <label className="block text-lg  text-black">Ingredientes:</label>
 
           <IngredientList
             ingredients={ingredients}
@@ -176,7 +182,7 @@ export function AddRecipe() {
           </button>
           {/*Text area for the steps*/}
           <label className="form-label inline-block mb-2 text-black text-lg">
-            Steps:
+            Pasos:
           </label>
           <textarea
             onChange={(evt) => {
@@ -205,7 +211,7 @@ export function AddRecipe() {
               }
             }}
           >
-            <a href="/Feed">🥧 Publica tu receta 🍕</a>
+            Agregar
           </button>
         </div>
       </main>

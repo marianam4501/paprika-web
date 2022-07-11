@@ -40,7 +40,7 @@ export function Profile() {
         <div className="grid mt-1 mb-10 columns-1 justify-center gap-y-5">
           {profile.user.profile_picture !== "" && (
             <img
-              className="object-cover  pa-5 rounded-full h-72 w-72"
+              className="object-cover justify-self-center pa-5 rounded-full h-72 w-72"
               src={profile.user.profile_picture} //profile image
               alt="userPic"
             />
