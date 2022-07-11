@@ -14,17 +14,41 @@ export function AddRecipe() {
 
   const [ingredients, setIngredients] = useState([]);
   const [recipePicture, setRecepiPicture] = useState(null);
-  const [pictureURL, setPictureURL] = useState(null);
   const [recipe, setRecipe] = useState({
     userId: loggedUserId,
     name: "",
     steps: " ",
-    image: "https://ci0137.s3.amazonaws.com/paprika/default_recipe.png"
   });
 
   const [recipeIngreidentList, setRecipeIngreidentList] = useState([]);
 
   const dispatch = useDispatch();
+
+  const onAfterUpload = (value) => {
+    const _recipe = { ...recipe, value, recipeIngreidentList };
+    dispatch(createRecipe(_recipe));
+  };
+
+  function setPictureOnUpload() {
+    async function upload() {
+      const form = new FormData();
+      form.append("file", recipePicture);
+      const uploadFetch = await fetch(
+        "https://paprika-api.herokuapp.com/upload",
+        {
+          method: "POST",
+          body: form,
+        }
+      );
+      const uploadData = await uploadFetch.json();
+
+      return uploadData;
+    }
+
+    upload().then((uploadData) => {
+      onAfterUpload(uploadData.url);
+    });
+  }
 
   const handleChange = (key, value) => {
     setRecipe({
@@ -32,17 +56,6 @@ export function AddRecipe() {
       [key]: value,
     });
   };
-
-  const upload = async () => {
-    const form = new FormData();
-    form.append('file', recipePicture);
-      const uploadFetch = await fetch('https://paprika-api.herokuapp.com/upload', {
-          method: 'POST',
-          body: form,
-      }); 
-      const uploadData = await uploadFetch.json();
-      setPictureURL(uploadData.url);
-  }
 
   function handleAddIngredient(e) {
     setIngredients((prevIngredients) => {
@@ -182,12 +195,14 @@ export function AddRecipe() {
             type="submit"
             className="inline-flex justify-center mt-10 px-4 py-3 w-full border border-transparent shadow-sm text-lg font-medium rounded-md text-black bg-light-orange hover:bg-dark-orange hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"
             onClick={() => {
-              if(recipePicture!=null){
-                upload();
-                handleChange("image", pictureURL);
+              if (recipePicture != null) {
+                setPictureOnUpload();
+                //handleChange("image", pictureURL);
+              } else {
+                var value = "";
+                const _recipe = { ...recipe, value, recipeIngreidentList };
+                dispatch(createRecipe(_recipe));
               }
-              const _recipe =  {...recipe,recipeIngreidentList};
-              dispatch(createRecipe(_recipe));
             }}
           >
             <a href="/Feed">🥧 Publica tu receta 🍕</a>
