@@ -1,8 +1,8 @@
 import Header from "../../Components/Headers/SimpleHeader";
 import Footer from "../../Components/Footer/Index";
-import { createUser } from "../../Slices/User/Requests/createUser";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+//mport { createUser } from "../../Slices/User/Requests/createUser";
+ import { useState } from "react";
+// import { useDispatch } from "react-redux";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -11,7 +11,7 @@ export default function Register() {
   const [lastName, setlastName] = useState("");
   //const [pictureURL, setPictureURL] = useState("https://ci0137.s3.amazonaws.com/paprika/defaultUser.png");
   const [UserPicture, setUserPicture] = useState(null);
-  const dispatch = useDispatch();
+  //onst dispatch = useDispatch();
 
   // const upload = async () => {
   //   const form = new FormData();
