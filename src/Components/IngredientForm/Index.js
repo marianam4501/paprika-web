@@ -30,7 +30,7 @@ export default function IngedientForm({
       <main>
         <div className="flex justify-center ">
           <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm w-full gap-3">
-            <label className="block text-lg  text-black">Name:</label>
+            <label className="block text-lg  text-black">Nombre:</label>
             <input
               value={ingredient_.name}
               onChange={(evt) => {
@@ -42,7 +42,7 @@ export default function IngedientForm({
                 focus:text-gray-700 focus:bg-white focus:border-light-orange focus:outline-none"
               placeholder="Ingredient"
             />
-            <label className="block text-lg text-black">Quantity:</label>
+            <label className="block text-lg text-black">Cantidad:</label>
             <div className="columns-2">
               <input
                 value={ingredient_.quantity}
@@ -57,7 +57,7 @@ export default function IngedientForm({
                 placeholder="quantity"
               />
               <input
-                value={ingredient_.measure}
+                value={ingredient_.quantity}
                 onChange={(evt) => {
                   handleChange("measure", evt.target.value);
                 }}
@@ -66,7 +66,7 @@ export default function IngedientForm({
                 form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700
                 bg-white bg-clip-padding border-[2px] border-solid border-gray-300 rounded transition ease-in-out m-0
                 focus:text-gray-700 focus:bg-white focus:border-light-orange focus:outline-none"
-                placeholder="measure"
+                placeholder="medida"
               />
             </div>
 
@@ -75,7 +75,7 @@ export default function IngedientForm({
               className=" inline-block px-6 py-2.5 mt-5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-900 hover:shadow-lg focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-600 active:shadow-lg transition duration-150 ease-in-out"
               onClick={handleDeleteClick}
             >
-              Delete Ingredient
+              Borrar ingrediente
             </button>
           </div>
         </div>
