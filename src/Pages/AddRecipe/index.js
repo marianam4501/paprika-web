@@ -110,7 +110,7 @@ export function AddRecipe() {
             className="form-control block w-full px-3 py-1.5 text-base font-normal text-black bg-white bg-clip-padding
             border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-light-orange focus:outline-none"
             id="floatingInput"
-            placeholder="best recipe ever"
+            placeholder="La mejor receta"
           ></input>
           {/* IMAGE INPUT */}
           <label className="block text-lg  text-black">
@@ -194,7 +194,7 @@ export function AddRecipe() {
             border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-black focus:bg-white focus:border-light-orange focus:outline-none"
             id="exampleFormControlTextarea1"
             rows="3"
-            placeholder="Steps to make the recipe"
+            placeholder="Pasos"
           ></textarea>
 
           <button

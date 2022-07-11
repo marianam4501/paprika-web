@@ -40,7 +40,7 @@ export default function IngedientForm({
               className="form-control block w-full px-3 py-2 text-base font-normal text-gray-700 bg-white bg-clip-padding border-[2px]
                  border-solid border-gray-300  dark:border-gray-300 rounded-lg transition ease-in-out m-0
                 focus:text-gray-700 focus:bg-white focus:border-light-orange focus:outline-none"
-              placeholder="Ingredient"
+              placeholder="Ingredientes"
             />
             <label className="block text-lg text-black">Cantidad:</label>
             <div className="columns-2">
@@ -54,10 +54,10 @@ export default function IngedientForm({
                 form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700
                 bg-white bg-clip-padding border-[2px] border-solid border-gray-300 rounded transition ease-in-out m-0
                 focus:text-gray-700 focus:bg-white focus:border-light-orange focus:outline-none"
-                placeholder="quantity"
+                placeholder="cantidad"
               />
               <input
-                value={ingredient_.quantity}
+                value={ingredient_.measurement}
                 onChange={(evt) => {
                   handleChange("measure", evt.target.value);
                 }}

@@ -74,7 +74,7 @@ export default function Login() {
              Iniciar sesión
           </button>
           <h3 className="text-base font-normal tracking-wide text-center px-10">
-            ó
+            o
           </h3>
           <button
             className="w-44 justify-self-center py-2 px-6 border border-transparent 
