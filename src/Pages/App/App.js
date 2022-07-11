@@ -8,9 +8,7 @@ import ViewRecipe from "../Recipe/ViewRecipe";
 import Feed from "../Feed/Feed";
 import Unathorized from "../Unathorized"
 import PrivateRoute from "../../Components/PrivateRoute";
-import { ROLES } from "../../utils/constants";
-// import { useSelector } from "react-redux";
-// import Spinner from "../../Components/Loading/index";
+import { ROLES } from "../../Utils/constants";
 
 export default function App() {
   //const user = useSelector(selectUser);
