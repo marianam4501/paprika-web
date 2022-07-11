@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const createRecipe = createAsyncThunk('Recipes/createRecipe', async ( recipe) => {
+    console.log(recipe);
     const itemFetch = await fetch('https://paprika-api.herokuapp.com/recipes', {
         
         method: 'POST',
@@ -12,7 +13,7 @@ export const createRecipe = createAsyncThunk('Recipes/createRecipe', async ( rec
             name : recipe.name,
             ingredients : recipe.recipeIngreidentList,
             steps: recipe.steps,
-            image: recipe.image
+            image: recipe.value
         }),
     });
     const itemData = await itemFetch.json();
