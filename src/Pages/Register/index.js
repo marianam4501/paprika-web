@@ -1,7 +1,7 @@
 import Header from "../../Components/Headers/SimpleHeader";
 import Footer from "../../Components/Footer/Index";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../../Slices/User/Requests/createUser";
 import Spinner from "../../Components/Loading";
