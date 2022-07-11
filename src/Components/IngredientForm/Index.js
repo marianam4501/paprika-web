@@ -59,7 +59,7 @@ export default function IngedientForm({
               <input
                 value={ingredient_.measurement}
                 onChange={(evt) => {
-                  handleChange("measure", evt.target.value);
+                  handleChange("measurement", evt.target.value);
                 }}
                 type="text"
                 className="
