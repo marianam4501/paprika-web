@@ -10,7 +10,7 @@ export default function IngedientForm({
     id: uuidv4(),
     name: "",
     quantity: "",
-    measure: "",
+    measurement: "",
   });
   
   
