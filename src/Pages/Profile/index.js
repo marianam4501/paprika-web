@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../Components/Headers/Header";
 import Footer from "../../Components/Footer/Index";
 import RecepiesBlock from "../../Components/RecepiesBlock/PostsList";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Spinner from "../../Components/Loading/index";
 
 export function Profile() {
